@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Register</title>
+</head>
+
+<body>
+  <!-- component -->
+  <div
+    class="bg-[url('https://images.unsplash.com/photo-1554034483-04fda0d3507b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] lg:py-20 bg-cover">
+    <div class="bg-grey-lighter min-h-screen flex flex-col">
+      <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+        <form action="/register" method="post" class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+          <h1 class="mb-8 text-3xl text-center">Sign up</h1>
+          <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="name"
+            placeholder="Full Name" required/>
+
+          <input type="email" class="block border border-grey-light w-full p-3 rounded mb-4" name="email"
+            placeholder="email" required/>
+
+          <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4" name="password"
+            placeholder="Password" required/>
+          <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4"
+            placeholder="Confirm Password" required/>
+
+          <button type="submit"
+            class="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-dark focus:outline-none my-1">Create
+            Account</button>
+
+          <div class="text-center text-sm text-grey-dark mt-4">
+            By signing up, you agree to the
+            <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">
+              Terms of Service
+            </a> and
+            <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">
+              Privacy Policy
+            </a>
+          </div>
+        </form>
+
+        <div class="text-grey-100 mt-6">
+          Already have an account?
+          <a class="hover:underline border-b font-bold text-blue-500" href="/login">
+            Log in
+          </a>.
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>
