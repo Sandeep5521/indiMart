@@ -85,8 +85,14 @@ app.get('/pay', (req, res) => {
 //     }
 // })
 
-app.get('/contacts', (req, res) => {
-    res.sendFile(__dirname + '/src/contact.html')
+app.get('/contacts', auth, async (req, res) => {
+    const id = req.id
+    const tmp = await Data.findOne({ _id: id });
+    let user = tmp.name.split(" ", 1);
+    user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
+    res.render("contact.hbs", {
+        iname: 'Hi, ' + user
+    })
 })
 
 app.get('/login', (req, res) => {
@@ -226,7 +232,7 @@ app.get('/password', (req, res) => {
     try {
         const token = req.cookies.code
         const obj = jwt.verify(token, process.env.SECRET_KEY)
-        res.sendFile(__dirname+'/src/change_password.html')
+        res.sendFile(__dirname + '/src/change_password.html')
     } catch (error) {
         res.redirect('/login')
     }

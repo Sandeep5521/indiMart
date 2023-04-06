@@ -37,130 +37,132 @@
     </div>
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-body-tertiary bg-dark" data-bs-theme="dark">
-    <div class="container-fluid">
-        <a href="/" class="navbar-brand fs-1 fw-bold">indi<span class="text-danger">Mart</span></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active fs-5" aria-current="page" href="/">Home</a>
-                </li>
-                {{!-- <li class="nav-item">
-                    <a class="nav-link fs-5" href="#">Shop</a>
-                </li> --}}
-                <li class="nav-item dropdown fs-5">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Shop
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item text-black" href="/user/shop?cat=men's clothing">Men's Clothing</a></li>
-                        <li><a class="dropdown-item text-black" href="/user/shop?cat=women's clothing">Women's Clothing</a>
-                        </li>
-                        <li><a class="dropdown-item text-black" href="/user/shop?cat=electronics">Electronics</a></li>
-                        <li><a class="dropdown-item text-black" href="/user/shop?cat=shoes">Shoes</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-5 text-tertiary" href="/contacts">Contacts</a>
-                </li>
-                <li class="nav-item active dropdown fs-5">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        {{iname}}
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item text-black" href="/user">My Profile</a></li>
-                        <li><a class="dropdown-item text-black" href="/orders">My Orders</a></li>
-                        <li><a class="dropdown-item text-black" href="/wishlist">My Wishlist</a></li>
-                        <li><a class="dropdown-item text-black" href="/cart">My Cart</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item text-danger" href="/logout">Log out</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2 bg-light text-black" type="search" placeholder="Search"
-                    aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand fs-1 fw-bold">indi<span class="text-danger">Mart</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5" aria-current="page" href="/">Home</a>
+                    </li>
+                    {{!-- <li class="nav-item">
+                        <a class="nav-link fs-5" href="#">Shop</a>
+                    </li> --}}
+                    <li class="nav-item dropdown fs-5">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Shop
+                        </a>
+                        <ul class="dropdown-menu" id="category">
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 text-tertiary" href="/contacts">Contacts</a>
+                    </li>
+                    <li class="nav-item active dropdown fs-5">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{iname}}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-black" href="/user">My Profile</a></li>
+                            <li><a class="dropdown-item text-black" href="/orders">My Orders</a></li>
+                            <li><a class="dropdown-item text-black" href="/wishlist">My Wishlist</a></li>
+                            <li><a class="dropdown-item text-black" href="/cart">My Cart</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="/logout">Log out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 bg-light text-black" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-body-tertiary bg-dark" data-bs-theme="dark">
-    <div class="container-fluid">
-        <a href="/" class="navbar-brand fs-1 fw-bold">indi<span class="text-danger">Mart</span></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active fs-5" aria-current="page" href="#">Home</a>
-                </li>
-                {{!-- <li class="nav-item">
-                    <a class="nav-link fs-5" href="#">Shop</a>
-                </li> --}}
-                <li class="nav-item dropdown fs-5">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Shop
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item text-black" href="/shop?cat=men's clothing">Men's Clothing</a></li>
-                        <li><a class="dropdown-item text-black" href="/shop?cat=women's clothing">Women's Clothing</a>
-                        </li>
-                        <li><a class="dropdown-item text-black" href="/shop?cat=electronics">Electronics</a></li>
-                        <li><a class="dropdown-item text-black" href="/shop?cat=shoes">Shoes</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-5 text-tertiary" href="/contacts">Contacts</a>
-                </li>
-                <li class="nav-item active dropdown fs-5">
-                    <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        {{iname}}
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item text-black" href="/user">My Profile</a></li>
-                        <li><a class="dropdown-item text-black" href="/user/orders">My Orders</a></li>
-                        <li><a class="dropdown-item text-black" href="/user/favourites">My Favourites</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item text-danger" href="/logout">Log out</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2 bg-light text-black" type="search" placeholder="Search"
-                    aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-body-tertiary bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand fs-1 fw-bold">indi<span class="text-danger">Mart</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5" aria-current="page" href="#">Home</a>
+                    </li>
+                    {{!-- <li class="nav-item">
+                        <a class="nav-link fs-5" href="#">Shop</a>
+                    </li> --}}
+                    <li class="nav-item dropdown fs-5">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Shop
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-black" href="/shop?cat=men's clothing">Men's Clothing</a>
+                            </li>
+                            <li><a class="dropdown-item text-black" href="/shop?cat=women's clothing">Women's
+                                    Clothing</a>
+                            </li>
+                            <li><a class="dropdown-item text-black" href="/shop?cat=electronics">Electronics</a></li>
+                            <li><a class="dropdown-item text-black" href="/shop?cat=shoes">Shoes</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 text-tertiary" href="/contacts">Contacts</a>
+                    </li>
+                    <li class="nav-item active dropdown fs-5">
+                        <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{iname}}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-black" href="/user">My Profile</a></li>
+                            <li><a class="dropdown-item text-black" href="/user/orders">My Orders</a></li>
+                            <li><a class="dropdown-item text-black" href="/user/favourites">My Favourites</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="/logout">Log out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 bg-light text-black" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="/img/hero/hero-1.jpg">
+            <div class="hero__items set-bg"
+                data-setbg="https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 col-md-8">
                             <div class="hero__text">
                                 <h6>Summer Collection</h6>
-                                <h2>Fall - Winter Collections 2023</h2>
-                                <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
+                                <h2 class="text-light">Fall - Winter Collections 2023</h2>
+                                <p class="text-light">A specialist label creating luxury essentials. Ethically crafted
+                                    with an unwavering
                                     commitment to exceptional quality.</p>
-                                <a href="/shop" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+                                <a href="/shop?cat=mens-shirts" class="primary-btn">Shop now <span
+                                        class="arrow_right"></span></a>
                                 <div class="hero__social">
                                     <a href="/shop"><i class="fa fa-facebook"></i></a>
                                     <a href="/shop"><i class="fa fa-twitter"></i></a>
@@ -172,16 +174,19 @@
                     </div>
                 </div>
             </div>
-            <div class="hero__items set-bg" data-setbg="/img/hero/hero-2.jpg">
+            <!-- <div class="hero__items set-bg"
+                data-setbg="https://images.unsplash.com/photo-1553531889-56cc480ac5cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 col-md-8">
                             <div class="hero__text">
-                                <h6>Summer Collection</h6>
-                                <h2>Fall - Winter Collections 2023</h2>
-                                <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
-                                    commitment to exceptional quality.</p>
-                                <a href="/shop" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+                                <h6>Online Supermarket</h6>
+                                <h2 class="text-success">Buy Groceries Online</h2>
+                                <p class="text-black">Buy grocery and more from brands such as Kellogg's, Tata Gold,
+                                    Parle G, Lays, etc.
+                                    Order the online grocery comfortably from home for timely doorstep delivery.</p>
+                                <a href="/shop?cat=groceries" class="primary-btn">Shop now <span
+                                        class="arrow_right"></span></a>
                                 <div class="hero__social">
                                     <a href="/shop"><i class="fa fa-facebook"></i></a>
                                     <a href="/shop"><i class="fa fa-twitter"></i></a>
@@ -193,8 +198,33 @@
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="hero__items set-bg"
+                data-setbg="https://images.unsplash.com/photo-1594495024437-db507fd23fcc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-7 col-md-8">
+                            <div class="hero__text">
+                                <h6>Summer Collection</h6>
+                                <h2 class="text-light">Fall - Winter Collections 2023</h2>
+                                <p class="text-light">A specialist label creating luxury essentials. Ethically crafted
+                                    with an unwavering
+                                    commitment to exceptional quality.</p>
+                                <a href="/shop?cat=sunglasses" class="primary-btn">Shop now <span
+                                        class="arrow_right"></span></a>
+                                <div class="hero__social">
+                                    <a href="/shop"><i class="fa fa-facebook"></i></a>
+                                    <a href="/shop"><i class="fa fa-twitter"></i></a>
+                                    <a href="/shop"><i class="fa fa-pinterest"></i></a>
+                                    <a href="/shop"><i class="fa fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
     </section>
+    <div class="pro" id="slider"></div>
     <!-- Hero Section End -->
 
     <!-- Banner Section Begin -->
@@ -207,8 +237,8 @@
                             <img src="/img/banner/banner-1.jpg" alt="">
                         </div>
                         <div class="banner__item__text">
-                            <h2>Clothing Collections 2023</h2>
-                            <a href="/shop">Shop now</a>
+                            <h2>Mens Shirts Collection 2023</h2>
+                            <a href="/shop?cat=mens-shirts">Shop now</a>
                         </div>
                     </div>
                 </div>
@@ -218,8 +248,8 @@
                             <img src="/img/banner/banner-2.jpg" alt="">
                         </div>
                         <div class="banner__item__text">
-                            <h2>Accessories</h2>
-                            <a href="/shop">Shop now</a>
+                            <h2>Sunglasses</h2>
+                            <a href="/shop?cat=sunglasses">Shop now</a>
                         </div>
                     </div>
                 </div>
@@ -229,8 +259,8 @@
                             <img src="/img/banner/banner-3.jpg" alt="">
                         </div>
                         <div class="banner__item__text">
-                            <h2>Shoes Spring 2023</h2>
-                            <a href="/shop">Shop now</a>
+                            <h2>Mens Shoes 2023</h2>
+                            <a href="/shop?cat=mens-shoes">Shop now</a>
                         </div>
                     </div>
                 </div>
@@ -667,6 +697,7 @@
     <script src="/js/mixitup.min.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/nav.js"></script>
 </body>
 
 </html>

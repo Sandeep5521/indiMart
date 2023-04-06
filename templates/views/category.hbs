@@ -11,7 +11,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-    rel="stylesheet">
+        rel="stylesheet">
 
     <!-- Css Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -23,6 +23,11 @@
     <link rel="stylesheet" href="/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <style>
+        .pro {
+            background-size: cover;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,8 +39,9 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-body-tertiary bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
             <a href="/" class="navbar-brand fs-1 fw-bold">indi<span class="text-danger">Mart</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -51,33 +57,28 @@
                             aria-expanded="false">
                             Shop
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item text-black" href="/shop?cat=men's clothing">Men's Clothing</a></li>
-                            <li><a class="dropdown-item text-black" href="/shop?cat=women's clothing">Women's Clothing</a>
-                            </li>
-                            <li><a class="dropdown-item text-black" href="/shop?cat=electronics">Electronics</a></li>
-                            <li><a class="dropdown-item text-black" href="/shop?cat=shoes">Shoes</a></li>
+                        <ul class="dropdown-menu" id="category">
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fs-5 text-tertiary" href="/contacts">Contacts</a>
                     </li>
                     <li class="nav-item active dropdown fs-5">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        {{iname}}
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item text-black" href="/user">My Profile</a></li>
-                        <li><a class="dropdown-item text-black" href="/orders">My Orders</a></li>
-                        <li><a class="dropdown-item text-black" href="/wishlist">My Wishlist</a></li>
-                        <li><a class="dropdown-item text-black" href="/cart">My Cart</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item text-danger" href="/logout">Log out</a></li>
-                    </ul>
-                </li>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{iname}}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-black" href="/user">My Profile</a></li>
+                            <li><a class="dropdown-item text-black" href="/orders">My Orders</a></li>
+                            <li><a class="dropdown-item text-black" href="/wishlist">My Wishlist</a></li>
+                            <li><a class="dropdown-item text-black" href="/cart">My Cart</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="/logout">Log out</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2 bg-light text-black" type="search" placeholder="Search"
@@ -87,12 +88,13 @@
             </div>
         </div>
     </nav>
-    
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-body-tertiary bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
             <a href="/" class="navbar-brand fs-1 fw-bold">indi<span class="text-danger">Mart</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -109,8 +111,10 @@
                             Shop
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item text-black" href="/shop?cat=men's clothing">Men's Clothing</a></li>
-                            <li><a class="dropdown-item text-black" href="/shop?cat=women's clothing">Women's Clothing</a>
+                            <li><a class="dropdown-item text-black" href="/shop?cat=men's clothing">Men's Clothing</a>
+                            </li>
+                            <li><a class="dropdown-item text-black" href="/shop?cat=women's clothing">Women's
+                                    Clothing</a>
                             </li>
                             <li><a class="dropdown-item text-black" href="/shop?cat=electronics">Electronics</a></li>
                             <li><a class="dropdown-item text-black" href="/shop?cat=shoes">Shoes</a></li>
@@ -348,7 +352,7 @@
                                         <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a>
                                         </li>
                                         <li><a href="#"><img src="img/icon/search.png" alt=""></a>
-                                        <span>shop now</span></a>
+                                            <span>shop now</span></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -473,20 +477,20 @@
     <script src="/js/mixitup.min.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/nav.js"></script>
     <script>
         let cat = "{{shop}}"
         let le = document.getElementById('lele')
-        if(cat == 'women&#x27;s clothing') cat = "women's clothing"
-        if(cat == 'men&#x27;s clothing') cat = "men's clothing"
         console.log(cat)
-        fetch(`https://fakestoreapi.com/products/category/${cat}`)
+        fetch(`https://dummyjson.com/products/category/${cat}`)
             .then(res => res.json())
-            .then((val) => {
-                console.log(val)
-                for(let i=0;i<val.length;i++){
+            .then((tmp) => {
+                console.log(tmp)
+                let val = tmp.products
+                for (let i = 0; i < val.length; i++) {
                     le.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic bg-[url('${val[i].image}')] bg-cover">
+                                <div class="product__item__pic pro" style="background-image: url('${val[i].thumbnail}');">
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="img/icon/heart.png" alt=""></a>
                                         </li>

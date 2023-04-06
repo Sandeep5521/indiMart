@@ -51,6 +51,9 @@
                     <li class="nav-item">
                         <a class="nav-link fs-5" aria-current="page" href="/">Home</a>
                     </li>
+                    {{!-- <li class="nav-item">
+                        <a class="nav-link fs-5" href="#">Shop</a>
+                    </li> --}}
                     <li class="nav-item dropdown fs-5">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -60,10 +63,23 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5 active text-tertiary" href="/contacts">Contacts</a>
+                        <a class="nav-link active fs-5 text-tertiary" href="/contacts">Contacts</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-5 text-tertiary" href="/login">Sign in</a>
+                    <li class="nav-item active dropdown fs-5">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{iname}}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-black" href="/user">My Profile</a></li>
+                            <li><a class="dropdown-item text-black" href="/orders">My Orders</a></li>
+                            <li><a class="dropdown-item text-black" href="/wishlist">My Wishlist</a></li>
+                            <li><a class="dropdown-item text-black" href="/cart">My Cart</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="/logout">Log out</a></li>
+                        </ul>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
