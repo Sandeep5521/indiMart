@@ -7,7 +7,8 @@
   <meta name="keywords" content="Male_Fashion, unica, creative, html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Shop</title>
+  <link rel="shortcut icon" href="https://img.icons8.com/fluency/96/000000/shopping-bag.png" type="image/x-icon">
+  <title>{{shop}}</title>
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
@@ -48,9 +49,6 @@
           <li class="nav-item">
             <a class="nav-link fs-5" aria-current="page" href="/">Home</a>
           </li>
-          {{!-- <li class="nav-item">
-            <a class="nav-link fs-5" href="#">Shop</a>
-          </li> --}}
           <li class="nav-item active dropdown fs-5">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Shop
@@ -467,7 +465,7 @@
         console.log(tmp)
         let val = tmp.products
         for (let i = 0; i < val.length; i++) {
-          le.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-6">
+          le.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-6" onclick="go('${cat}','${val[i].title}')">
                             <div class="product__item">
                                 <div class="product__item__pic pro" style="background-image: url('${val[i].thumbnail}');">
                                     <ul class="product__hover">
@@ -507,6 +505,9 @@
                         </div>`
         }
       })
+    const go = (c, n) => {
+      open(`/product?cat=${c}&name=${n}`, '_self')
+    }
   </script>
 </body>
 

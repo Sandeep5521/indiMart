@@ -55,6 +55,21 @@ app.get('/shop', auth, async (req, res) => {
     else res.sendFile(__dirname + '/src/error.html')
 })
 
+app.get('/product', auth, async (req, res) => {
+    const id = req.id
+    const tmp = await Data.findOne({ _id: id });
+    let user = tmp.name.split(" ", 1);
+    user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
+    if (req.query.name && req.query.cat) {
+        res.render("uProduct.hbs", {
+            iname: 'Hi, ' + user,
+            name: req.query.name,
+            cat: req.query.cat
+        })
+    }
+    else res.sendFile(__dirname + '/src/error.html')
+})
+
 app.get('/pay', (req, res) => {
     res.sendFile(__dirname + '/src/checkout.html')
 })

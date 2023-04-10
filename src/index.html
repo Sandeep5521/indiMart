@@ -24,12 +24,12 @@
     <link rel="stylesheet" href="/css/nice-select.css">
     <link rel="stylesheet" href="/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <!-- <style>
+    <style>
         .pro {
             height: 40rem;
             background-size: cover;
         }
-    </style> -->
+    </style>
 </head>
 
 <body>
@@ -498,12 +498,10 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/img/product/product-8.jpg">
+                        <div class="product__item__pic set-bg" onclick="go()" data-setbg="/img/product/product-8.jpg">
                             <ul class="product__hover">
-                                <li><a href="/shop"><img src="/img/icon/heart.png" alt=""></a></li>
-                                <li><a href="/shop"><img src="/img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                <li><a href="/login"><img src="/img/icon/heart.png" alt=""></a></li>
                                 </li>
-                                <li><a href="/shop"><img src="/img/icon/search.png" alt=""></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -542,22 +540,22 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="categories__text">
-                        <h2>Clothings Hot <br /> <span>Shoe Collection</span> <br /> Accessories</h2>
+                        <h2>Clothings <br /> <span>Hot Collection</span> <br /> Accessories</h2>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="categories__hot__deal">
-                        <img src="/img/product-sale.png" alt="">
+                        <img src="https://i.dummyjson.com/data/products/62/thumbnail.jpg" alt="">
                         <div class="hot__deal__sticker">
                             <span>Sale Of</span>
-                            <h5>₹29.99</h5>
+                            <h5 class="fs-3">₹46</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 offset-lg-1">
                     <div class="categories__deal__countdown">
                         <span>Deal Of The Week</span>
-                        <h2>Multi-pocket Chest Bag Black</h2>
+                        <h2>Waterproof Leather Brand Watch</h2>
                         <div class="categories__deal__countdown__timer" id="countdown">
                             <div class="cd-item">
                                 <span>3</span>
@@ -576,7 +574,8 @@
                                 <p>Seconds</p>
                             </div>
                         </div>
-                        <a href="/shop" class="primary-btn hover:rounded-full">Shop now</a>
+                        <a href="/product?cat=mens-watches&name=Waterproof Leather Brand Watch"
+                            class="primary-btn hover:rounded-full">Shop now</a>
                     </div>
                 </div>
             </div>
@@ -664,14 +663,18 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/nav.js"></script>
-    <!-- <script>
+    <script>
         setInterval(() => {
-            const li = [`https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80`, 'https://images.unsplash.com/photo-1553531889-56cc480ac5cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80', 'https://images.unsplash.com/photo-1594495024437-db507fd23fcc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80']
+            const li = ['https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80', 'https://images.unsplash.com/photo-1553531889-56cc480ac5cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80', 'https://images.unsplash.com/photo-1534723452862-4c874018d66d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80']
             const rand = Math.floor(Math.random() * li.length);
             console.log(rand);
             document.getElementById('slider').style.backgroundImage = `url("${li[rand]}")`;
         }, 2000)
-    </script> -->
+        const go = () => {
+            console.log('hi');
+            open('/shop?cat=sunglasses', '_self')
+        }
+    </script>
 </body>
 
 </html>

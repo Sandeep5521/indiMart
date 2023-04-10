@@ -488,7 +488,7 @@
                 console.log(tmp)
                 let val = tmp.products
                 for (let i = 0; i < val.length; i++) {
-                    le.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-6">
+                    le.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-6" onclick="go('${cat}','${val[i].title}')">
                             <div class="product__item">
                                 <div class="product__item__pic pro" style="background-image: url('${val[i].thumbnail}');">
                                     <ul class="product__hover">
@@ -528,6 +528,9 @@
                         </div>`
                 }
             })
+        const go = (c, n) => {
+            open(`/product?cat=${c}&name=${n}`, '_self')
+        }
     </script>
 </body>
 
