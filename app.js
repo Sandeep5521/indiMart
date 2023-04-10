@@ -133,7 +133,7 @@ app.post('/login', async (req, res) => {
         }
         const token = jwt.sign(obj, process.env.SECRET_KEY)
         res.cookie('jwt', token, {
-            expires: new Date(Date.now() + 1200000),
+            expires: new Date(Date.now() + 86400000), // must add secure at production time
             httpOnly: true
         })
         await Data.updateOne({ _id: id }, {
