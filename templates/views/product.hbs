@@ -26,6 +26,7 @@
     <style>
         .pro {
             background-size: cover;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -119,7 +120,6 @@
                     <div class="col-lg-12">
                         <div class="product__details__breadcrumb">
                             <a href="/">Home</a>
-                            <a href="#">Shop</a>
                             <a href="/shop?cat={{cat}}">{{cat}}</a>
                             <span>{{name}}</span>
                         </div>
@@ -252,7 +252,7 @@
                                 <h5><span>Guaranteed Safe Checkout</span></h5>
                                 <img src="img/shop-details/details-payment.png" alt="">
                                 <ul>
-                                    <li><span>SKU:</span> 3812912</li>
+                                    <li id="brand"><span>Brand:</span> 3812912</li>
                                     <li><span>Categories:</span> {{cat}}</li>
                                     <!-- <li><span>Tag:</span> Clothes, Skin, Body</li> -->
                                 </ul>
@@ -270,7 +270,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="related-title">Related Product</h3>
+                    <h3 class="related-title">Related Products</h3>
                 </div>
             </div>
             <div class="row" id="rel">
@@ -501,8 +501,9 @@
         const funcp = async () => {
             let tmp = await fetch(`https://dummyjson.com/products/search?q=${name}`)
             tmp = await tmp.json()
+            console.log(tmp);
             const val = tmp.products[0]
-            console.log(val);
+            document.getElementById('brand').innerHTML = `<span>Brand:</span> ${val.brand}`
             document.getElementById('price').innerHTML = `₹${val.price}`
             let shots = document.getElementById('shots')
             let Tabs = document.getElementById('Tab')
@@ -540,15 +541,10 @@
                     <div class="product__item sale">
                         <div class="product__item__pic pro" style="background-image:url('${val[i].thumbnail}');">
                             <span class="label">Sale</span>
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                                <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                            </ul>
                         </div>
                         <div class="product__item__text">
                             <h6>${val[i].title}</h6>
-                            <a href="#" class="add-cart">+ Add To Cart</a>
+                            <a href="#" class="add-cart">Shop Now</a>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -557,17 +553,6 @@
                                 <i class="fa fa-star-o"></i>
                             </div>
                             <h5>₹${val[i].price}</h5>
-                            <div class="product__color__select">
-                                <label for="pc-7">
-                                    <input type="radio" id="pc-7">
-                                </label>
-                                <label class="active black" for="pc-8">
-                                    <input type="radio" id="pc-8">
-                                </label>
-                                <label class="grey" for="pc-9">
-                                    <input type="radio" id="pc-9">
-                                </label>
-                            </div>
                         </div>
                     </div>
                 </div>`
