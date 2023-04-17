@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use((req, res, next) => {
-    res.header('Cache-Control', 'no-cache');
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
     res.header('Pragma', 'no-cache');
     res.header('Expires', '-1');
     next();
@@ -59,12 +59,16 @@ app.get('/product', auth, async (req, res) => {
     const id = req.id
     const tmp = await Data.findOne({ _id: id });
     let user = tmp.name.split(" ", 1);
+    let check = 0;
+    const li = tmp.cart;
+    for (let i = 0; i < li.length; i++) if (li[i] === req.query.name) check = 1;
     user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
     if (req.query.name && req.query.cat) {
         res.render("uProduct.hbs", {
             iname: 'Hi, ' + user,
             name: req.query.name,
-            cat: req.query.cat
+            cat: req.query.cat,
+            check: check
         })
     }
     else res.sendFile(__dirname + '/src/error.html')
@@ -87,18 +91,44 @@ app.get('/pay', (req, res) => {
 //     }
 // })
 
-// app.get('/cart', async (req, res) => {
-//     const cookie = req.cookies.jwt;
-//     if (!cookie) res.redirect('/login')
-//     else {
-//         const id = jwt.verify(cookie, process.env.SECRET_KEY);
-//         const tmp = await Data.findOne({ _id: id });
-//         const user = tmp.name.split(" ", 1);
-//         res.render("home.hbs", {
-//             iname: user
-//         })
-//     }
-// })
+app.get('/cart', auth, async (req, res) => {
+    const id = req.id
+    const tmp = await Data.findOne({ _id: id }).select({
+        name: 1,
+        cart: 1
+    });
+    if (req.query.id) res.send(tmp)
+    else {
+        let user = tmp.name.split(" ", 1);
+        user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
+        res.render("cart.hbs", {
+            iname: 'Hi, ' + user,
+            id: id
+        })
+    }
+})
+
+app.post('/cart', auth, async (req, res) => {
+    try {
+        await Data.updateOne({ _id: req.id }, {
+            $push: { cart: req.body.id }
+        })
+        res.send(true)
+    } catch (error) {
+        res.send(false)
+    }
+})
+
+app.delete('/cart', auth, async (req, res) => {
+    try {
+        await Data.updateOne({ _id: req.id }, {
+            $pull: { cart: req.body.id }
+        })
+        res.send(true)
+    } catch (error) {
+        res.send(false)
+    }
+})
 
 app.get('/contacts', auth, async (req, res) => {
     const id = req.id

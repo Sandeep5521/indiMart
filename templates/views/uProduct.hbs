@@ -255,12 +255,12 @@
                                 </div>
                             </div> -->
                             <div class="product__details__cart__option">
-                                <div class="quantity">
+                                {{!-- <div class="quantity">
                                     <div class="pro-qty">
                                         <input type="text" value="1">
                                     </div>
-                                </div>
-                                <a href="/cart" class="primary-btn">add to cart</a>
+                                </div> --}}
+                                <a href="#" class="primary-btn" id="postp" onclick="postp()">add to cart</a>
                             </div>
                             <div class="product__details__btns__option">
                                 <a href="/wishlist"><i class="fa fa-heart"></i> add to wishlist</a>
@@ -579,6 +579,39 @@
         funcr()
         const go = (c, n) => {
             open(`/product?cat=${c}&name=${n}`, '_self')
+        }
+        let flag = {{ check }}
+        if (flag) document.getElementById('postp').innerText = 'delete from cart';
+        else document.getElementById('postp').innerText = 'add to cart';
+        const postp = async () => {
+            let param;
+            if (flag) param = 'DELETE'
+            if (!flag) param = 'POST'
+            const options = {
+                method: param,
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: name
+                })
+            };
+
+            try {
+                let tmp = await fetch('/cart', options)
+                tmp = await tmp.json()
+                console.log(tmp);
+                if (tmp && !flag) {
+                    document.getElementById('postp').innerText = 'delete from cart';
+                    flag++;
+                }
+                else if (tmp && flag) {
+                    document.getElementById('postp').innerText = 'add to cart';
+                    flag--;
+                }
+            } catch (error) {
+                console.log("bug");
+            }
         }
     </script>
 </body>

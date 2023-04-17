@@ -6,8 +6,8 @@ const func = async (id) => {
             'content-type': 'application/json'
         },
         body: JSON.stringify({
-            email:id,
-            active:true
+            email: id,
+            active: true
         })
     };
 
@@ -17,14 +17,14 @@ const func = async (id) => {
         console.log(tmp);
         const txt = resend.innerHTML
         resend.innerText = 'Sended'
-        setTimeout(()=>{
+        setTimeout(() => {
             resend.innerHTML = txt
-        },3000)
+        }, 3000)
     } catch (error) {
-        console.log("fuck");
+        console.log("bug");
     }
 }
-const send = () =>{
+const send = () => {
     const id = document.getElementById('mail')
     func(id.innerText)
 }
