@@ -48,11 +48,13 @@ app.get('/shop', auth, async (req, res) => {
     const tmp = await Data.findOne({ _id: id });
     let user = tmp.name.split(" ", 1);
     user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
-    if (req.query.cat) res.render("category.hbs", {
+    if (req.query.cat) res.render("uCategory.hbs", {
         shop: req.query.cat,
         iname: 'Hi, ' + user
     })
-    else res.sendFile(__dirname + '/src/error.html')
+    else res.render("uShop.hbs", {
+        iname: 'Hi, ' + user
+    })
 })
 
 app.get('/product', auth, async (req, res) => {
@@ -63,10 +65,10 @@ app.get('/product', auth, async (req, res) => {
     const li = tmp.cart;
     for (let i = 0; i < li.length; i++) if (li[i] === req.query.name) check = 1;
     user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
-    if (req.query.name && req.query.cat) {
+    if (req.query.id && req.query.cat) {
         res.render("uProduct.hbs", {
             iname: 'Hi, ' + user,
-            name: req.query.name,
+            id: req.query.id,
             cat: req.query.cat,
             check: check
         })

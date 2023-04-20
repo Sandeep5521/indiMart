@@ -51,16 +51,8 @@
                     <li class="nav-item">
                         <a class="nav-link fs-5" aria-current="page" href="/">Home</a>
                     </li>
-                    {{!-- <li class="nav-item">
-                        <a class="nav-link fs-5" href="#">Shop</a>
-                    </li> --}}
-                    <li class="nav-item active dropdown fs-5">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Shop
-                        </a>
-                        <ul class="dropdown-menu" id="category">
-                        </ul>
+                    <li class="nav-item active">
+                        <a class="nav-link fs-5 text-tertiary" href="/shop">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fs-5 text-tertiary" href="/contacts">Contacts</a>
@@ -139,7 +131,7 @@
                         <div class="product__details__breadcrumb">
                             <a href="/">Home</a>
                             <a href="/shop?cat={{cat}}">{{cat}}</a>
-                            <span>{{name}}</span>
+                            <span id="ntitle">{{name}}</span>
                         </div>
                     </div>
                 </div>
@@ -512,15 +504,13 @@
     <script src="/js/mixitup.min.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
-    <script src="/js/nav.js"></script>
     <script>
-        let name = '{{name}}'
-        let cat = '{{cat}}'
         const funcp = async () => {
-            let tmp = await fetch(`https://dummyjson.com/products/search?q=${name}`)
+            let tmp = await fetch(`https://martdb.onrender.com/products?id={{id}}`)
             tmp = await tmp.json()
-            const val = tmp.products[0]
-            console.log(val);
+            console.log(tmp);
+            const val = tmp
+            document.title = val.title;
             document.getElementById('brand').innerHTML = `<span>Brand:</span> ${val.brand}`
             document.getElementById('price').innerHTML = `₹${val.price}`
             let shots = document.getElementById('shots')
@@ -543,19 +533,19 @@
                 one = '';
             }
             document.getElementById('title').innerHTML = `${val.title}`
+            document.getElementById('ntitle').innerHTML = `${val.title}`
             document.getElementById('des').innerHTML = `${val.description}`
         }
         funcp()
         const funcr = async () => {
-            let tmp = await fetch(`https://dummyjson.com/products/category/${cat}`)
+            let tmp = await fetch(`https://martdb.onrender.com/products?cat={{cat}}`)
             tmp = await tmp.json()
-            tmp = tmp.products
             const val = tmp.filter((curr) => {
-                if (curr.title != name) return curr;
+                if (curr._id != '{{id}}') return curr;
             })
             console.log(val);
-            for (let i = 0; i < 4; i++) {
-                document.getElementById('rel').innerHTML += `<div class="col-lg-3 col-md-6 col-sm-6 col-sm-6" onclick="go('${cat}','${val[i].title}')">
+            for (let i = 0; i < val.length; i++) {
+                document.getElementById('rel').innerHTML += `<div class="col-lg-3 col-md-6 col-sm-6 col-sm-6" onclick="go('{{cat}}','${val[i]._id}')">
                     <div class="product__item sale">
                         <div class="product__item__pic pro" style="background-image:url('${val[i].thumbnail}');">
                             <span class="label">Sale</span>
@@ -578,7 +568,7 @@
         }
         funcr()
         const go = (c, n) => {
-            open(`/product?cat=${c}&name=${n}`, '_self')
+            open(`/product?cat=${c}&id=${n}`, '_self')
         }
         let flag = {{ check }}
         if (flag) document.getElementById('postp').innerText = 'delete from cart';

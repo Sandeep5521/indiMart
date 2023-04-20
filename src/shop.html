@@ -8,15 +8,16 @@
     <meta name="keywords" content="indiMart, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <title>Contacts</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/fluency/96/000000/shopping-bag.png" type="image/x-icon">
+    <title>shop</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
         rel="stylesheet">
 
     <!-- Css Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
@@ -26,8 +27,8 @@
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <style>
         .pro {
-            background-image: url("https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
             background-size: cover;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -38,7 +39,6 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Offcanvas Menu Begin -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-body-tertiary bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
             <a href="/" class="navbar-brand fs-1 fw-bold">indi<span class="text-danger">Mart</span></a>
@@ -52,11 +52,11 @@
                     <li class="nav-item">
                         <a class="nav-link fs-5" aria-current="page" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link fs-5 text-tertiary" href="/shop">Shop</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5 active text-tertiary" href="/contacts">Contacts</a>
+                        <a class="nav-link fs-5 text-tertiary" href="/contacts">Contacts</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fs-5 text-tertiary" href="/login">Sign in</a>
@@ -70,6 +70,7 @@
             </div>
         </div>
     </nav>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-body-tertiary bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
             <a href="/" class="navbar-brand fs-1 fw-bold">indi<span class="text-danger">Mart</span></a>
@@ -104,63 +105,92 @@
                     <li class="nav-item">
                         <a class="nav-link fs-5 text-tertiary" href="/contacts">Contacts</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 text-tertiary" href="/login">Sign in</a>
+                    </li>
                 </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 bg-light text-black" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
             </div>
         </div>
     </nav>
-    <!-- Header Section End -->
 
-    <!-- Map Begin -->
-    <div class="map pro">
-    </div>
-    <!-- Map End -->
-
-    <!-- Contact Section Begin -->
-    <section class="contact spad">
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="contact__text">
-                        <div class="section-title">
-                            <span>Information</span>
-                            <h2>Contact Us</h2>
-                            <p>As you might expect of a company that began as a high-end interiors contractor, we pay
-                                strict attention.</p>
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Shop</h4>
+                        <div class="breadcrumb__links">
+                            <a href="/">Home</a>
+                            <span>Shop</span>
                         </div>
-                        <ul>
-                            <li>
-                                <h4>India</h4>
-                                <p>195 New Delhi, Delhi <br />+91 XXX-XXX-0958</p>
-                            </li>
-                            <li>
-                                <h4>Email</h4>
-                                <p>sundeep5521@gmiail.com</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="contact__form">
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Name">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Email">
-                                </div>
-                                <div class="col-lg-12">
-                                    <textarea placeholder="Message"></textarea>
-                                    <button type="submit" class="site-btn">Send Message</button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Contact Section End -->
+    <!-- Breadcrumb Section End -->
+
+    <!-- Shop Section Begin -->
+    <section class="shop spad" style="display: flex;place-content: center;">
+        <div class="col-lg-9">
+            <div class="shop__product__option">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="shop__product__option__left">
+                            <p>Showing Categories</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="lele">
+                <!-- <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
+                            <ul class="product__hover">
+                                <li><a href="#"><img src="img/icon/heart.png" alt=""></a>
+                                </li>
+                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                </li>
+                                <li><a href="#"><img src="img/icon/search.png" alt=""></a>
+                                    <span>shop now</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Piqué Biker Jacket</h6>
+                            <a href="#" class="add-cart">+ Add To Cart</a>
+                            <div class="rating">
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹67.24</h5>
+                            <div class="product__color__select">
+                                <label for="pc-4">
+                                    <input type="radio" id="pc-4">
+                                </label>
+                                <label class="active black" for="pc-5">
+                                    <input type="radio" id="pc-5">
+                                </label>
+                                <label class="grey" for="pc-6">
+                                    <input type="radio" id="pc-6">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+    <!-- Shop Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer">
@@ -240,6 +270,35 @@
     <script src="/js/mixitup.min.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
+    <script>
+        let le = document.getElementById('lele')
+        const addp = () => {
+            fetch(`https://martdb.onrender.com/category`)
+                .then(res => res.json())
+                .then((tmp) => {
+                    console.log(tmp)
+                    let val = tmp
+                    console.log(val)
+                    le.innerHTML = ''
+                    for (let i = 0; i < val.length; i++) {
+                        le.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-6" onclick="go('${val[i].title}')">
+                            <div class="product__item">
+                                <div class="product__item__pic pro" style="background-image: url('${val[i].thumbnail}');">
+                                </div>
+                                <div class="product__item__text">
+                                    <h6 style="text-align: center;">${val[i].title}</h6>
+                                    <a href="#" class="add-cart">Explore Now</a>
+                                </div>
+                            </div>
+                        </div>`
+                    }
+                })
+        }
+        addp()
+        const go = (c) => {
+            open(`/shop?cat=${c}`, '_self')
+        }
+    </script>
 </body>
 
 </html>
