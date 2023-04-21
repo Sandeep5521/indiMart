@@ -541,18 +541,18 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="categories__hot__deal">
-                        <img src="https://i.dummyjson.com/data/products/62/thumbnail.jpg" alt="">
+                        <img src="https://i.dummyjson.com/data/products/62/thumbnail.jpg" id="dpic" alt="">
                         <div class="hot__deal__sticker">
                             <span>Sale Of</span>
-                            <h5 class="fs-3">₹46</h5>
+                            <h5 class="fs-4" id="dprice">₹46</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 offset-lg-1">
                     <div class="categories__deal__countdown">
-                        <span>Deal Of The Week</span>
-                        <h2>Waterproof Leather Brand Watch</h2>
-                        <div class="categories__deal__countdown__timer" id="countdown">
+                        <span>Deal Of The Day</span>
+                        <h2 id="dtitle">Waterproof Leather Brand Watch</h2>
+                        <!-- <div class="categories__deal__countdown__timer" id="countdown">
                             <div class="cd-item">
                                 <span>3</span>
                                 <p>Days</p>
@@ -569,9 +569,9 @@
                                 <span>18</span>
                                 <p>Seconds</p>
                             </div>
-                        </div>
+                        </div> -->
                         <a href="/product?cat=mens-watches&name=Waterproof Leather Brand Watch"
-                            class="primary-btn hover:rounded-full">Shop now</a>
+                            class="primary-btn hover:rounded-full" id="dlink">Shop now</a>
                     </div>
                 </div>
             </div>
@@ -632,17 +632,6 @@
     </footer>
     <!-- Footer Section End -->
 
-    <!-- Search Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
-    <!-- Search End -->
-
     <!-- Js Plugins -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
@@ -669,6 +658,21 @@
             console.log('hi');
             open('/shop?cat=sunglasses', '_self')
         }
+        const random = async () => {
+            const dpic = document.getElementById('dpic');
+            const dtitle = document.getElementById('dtitle');
+            const dprice = document.getElementById('dprice');
+            const dlink = document.getElementById('dlink');
+            let tmp = await fetch('https://martdb.onrender.com/random')
+            tmp = await tmp.json()
+            console.log(tmp);
+            tmp = tmp[0]
+            dpic.src = tmp.thumbnail;
+            dtitle.innerText = tmp.title;
+            dprice.innerText = `₹${tmp.price}`;
+            dlink.href = `/product?cat=${tmp.category}&id=${tmp._id}`
+        }
+        random()
     </script>
 </body>
 

@@ -130,6 +130,7 @@
                     <div class="col-lg-12">
                         <div class="product__details__breadcrumb">
                             <a href="/">Home</a>
+                            <a href="/shop">Shop</a>
                             <a href="/shop?cat={{cat}}">{{cat}}</a>
                             <span id="ntitle">{{name}}</span>
                         </div>
@@ -583,7 +584,7 @@
                     'content-type': 'application/json'
                 },
                 body: JSON.stringify({
-                    id: name
+                    id: '{{id}}'
                 })
             };
 

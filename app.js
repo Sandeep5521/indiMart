@@ -63,7 +63,7 @@ app.get('/product', auth, async (req, res) => {
     let user = tmp.name.split(" ", 1);
     let check = 0;
     const li = tmp.cart;
-    for (let i = 0; i < li.length; i++) if (li[i] === req.query.name) check = 1;
+    for (let i = 0; i < li.length; i++) if (li[i] === req.query.id) check = 1;
     user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
     if (req.query.id && req.query.cat) {
         res.render("uProduct.hbs", {
