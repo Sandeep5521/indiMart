@@ -247,15 +247,25 @@
           console.log(tmp)
           let val = tmp
           if (Sort > 0) val.sort((a, b) => {
-            return a.price - b.price
+            let ap = a.price;
+            if (a.discountPrice) ap = a.discountPrice;
+            let bp = b.price;
+            if (b.discountPrice) bp = b.discountPrice;
+            return ap - bp;
           })
           if (Sort < 0) val.sort((a, b) => {
-            return b.price - a.price
+            let ap = a.price;
+            if (a.discountPrice) ap = a.discountPrice;
+            let bp = b.price;
+            if (b.discountPrice) bp = b.discountPrice;
+            return bp - ap;
           })
           console.log(val)
           le.innerHTML = ''
           document.getElementById('results').innerText = `Showing 1-12 of ${val.length} results`
           for (let i = 0; i < val.length; i++) {
+            let dis = val[i].price;
+            if (val[i].discountPrice) dis = val[i].discountPrice;
             le.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-6" onclick="go('{{shop}}','${val[i]._id}')">
                             <div class="product__item">
                                 <div class="product__item__pic pro" style="background-image: url('${val[i].thumbnail}');">
@@ -270,7 +280,7 @@
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </div>
-                                    <h5>₹${val[i].price}</h5>
+                                    <h5>₹${dis}</h5>
                                 </div>
                             </div>
                         </div>`

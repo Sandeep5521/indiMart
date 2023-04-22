@@ -569,23 +569,23 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="categories__text">
-                        <h2>Clothings Hot <br /> <span>Shoe Collection</span> <br /> Accessories</h2>
+                        <h2>Clothings <br /> <span>Hot Collection</span> <br /> Accessories</h2>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="categories__hot__deal">
-                        <img src="/img/product-sale.png" alt="">
+                        <img src="https://i.dummyjson.com/data/products/62/thumbnail.jpg" id="dpic" alt="">
                         <div class="hot__deal__sticker">
                             <span>Sale Of</span>
-                            <h5>₹29.99</h5>
+                            <h5 class="fs-4" id="dprice">₹46</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 offset-lg-1">
                     <div class="categories__deal__countdown">
-                        <span>Deal Of The Week</span>
-                        <h2>Multi-pocket Chest Bag Black</h2>
-                        <div class="categories__deal__countdown__timer" id="countdown">
+                        <span>Deal Of The Day</span>
+                        <h2 id="dtitle">Waterproof Leather Brand Watch</h2>
+                        <!-- <div class="categories__deal__countdown__timer" id="countdown">
                             <div class="cd-item">
                                 <span>3</span>
                                 <p>Days</p>
@@ -602,8 +602,9 @@
                                 <span>18</span>
                                 <p>Seconds</p>
                             </div>
-                        </div>
-                        <a href="/shop?cat=womens-bags" class="primary-btn hover:rounded-full">Shop now</a>
+                        </div> -->
+                        <a href="/product?cat=mens-watches&name=Waterproof Leather Brand Watch"
+                            class="primary-btn hover:rounded-full" id="dlink">Shop now</a>
                     </div>
                 </div>
             </div>
@@ -630,6 +631,23 @@
     <script src="/js/mixitup.min.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
+    <script>
+        const random = async () => {
+            const dpic = document.getElementById('dpic');
+            const dtitle = document.getElementById('dtitle');
+            const dprice = document.getElementById('dprice');
+            const dlink = document.getElementById('dlink');
+            let tmp = await fetch('https://martdb.onrender.com/random')
+            tmp = await tmp.json()
+            console.log(tmp);
+            tmp = tmp[0]
+            dpic.src = tmp.thumbnail;
+            dtitle.innerText = tmp.title;
+            dprice.innerText = `₹${tmp.price}`;
+            dlink.href = `/product?cat=${tmp.category}&id=${tmp._id}`
+        }
+        random()
+    </script>
 </body>
 
 </html>
