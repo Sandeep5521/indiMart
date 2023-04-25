@@ -316,10 +316,10 @@
             total.innerHTML = `${Number(total.innerText) + tmp.price}`
             body.innerHTML += `<tr id="del${tmp._id}">
                                     <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
+                                        <div class="product__cart__item__pic" style="cursor: pointer;" onclick="go('${tmp.category}','${tmp._id}')">
                                             <img src="${tmp.thumbnail}" style="width:6rem;" alt="">
                                         </div>
-                                        <div class="product__cart__item__text">
+                                        <div class="product__cart__item__text" style="cursor: pointer;" onclick="go('${tmp.category}','${tmp._id}')">
                                             <h6>${tmp.title}</h6>
                                             <h5>₹<span id="price${tmp._id}">${tmp.price}</span></h5>
                                         </div>
@@ -381,6 +381,9 @@
             } catch (error) {
                 console.log("bug");
             }
+        }
+        const go = (c, n) => {
+            open(`/product?cat=${c}&id=${n}`, '_self');
         }
     </script>
 </body>
