@@ -26,9 +26,13 @@
     <link rel="stylesheet" href="/css/magnific-popup.css">
     <link rel="stylesheet" href="/css/nice-select.css">
     <link rel="stylesheet" href="/css/owl.carousel.min.css">
-    {{!--
-    <link rel="stylesheet" href="/css/slicknav.min.css"> --}}
     <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .pro {
+            height: 40rem;
+            background-size: cover;
+        }
+    </style>
 </head>
 
 <body>
@@ -632,6 +636,12 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
     <script>
+        setInterval(() => {
+            const li = ['https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80', 'https://images.unsplash.com/photo-1553531889-56cc480ac5cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80', 'https://images.unsplash.com/photo-1534723452862-4c874018d66d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80', 'https://images.unsplash.com/photo-1585786463804-9be77e2cb993?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1334&q=80']
+            const rand = Math.floor(Math.random() * li.length);
+            console.log(rand);
+            document.getElementById('slider').style.backgroundImage = `url("${li[rand]}")`;
+        }, 2000)
         const random = async () => {
             const dpic = document.getElementById('dpic');
             const dtitle = document.getElementById('dtitle');

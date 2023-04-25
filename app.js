@@ -151,27 +151,33 @@ app.post('/login', async (req, res) => {
     //console.log(req.body);
     try {
         const tmp = await Data.findOne({ email: req.body.email })
-        if (!tmp) res.status(400).send('email id does not exists')
         const check = await bcrypt.compare(req.body.password, tmp.password)
-        if (!check) res.status(400).send('password is incorrect')
-        const id = tmp._id.valueOf();
-        //console.log(id.valueOf()); // get _id as a string from ObjectId
-        //console.log(id);
-        const uuid = uuidv4();
-        console.log(uuid);
-        const obj = {
-            _id: id,
-            rid: uuid
+        if (!tmp) res.status(400).render('bad.hbs', {
+            message: 'email id does not exists'
+        })
+        else if (!check) res.status(400).render('bad.hbs', {
+            message: 'password is incorrect'
+        })
+        else {
+            const id = tmp._id.valueOf();
+            //console.log(id.valueOf()); // get _id as a string from ObjectId
+            //console.log(id);
+            const uuid = uuidv4();
+            console.log(uuid);
+            const obj = {
+                _id: id,
+                rid: uuid
+            }
+            const token = jwt.sign(obj, process.env.SECRET_KEY)
+            res.cookie('jwt', token, {
+                expires: new Date(Date.now() + 86400000), // must add secure at production time
+                httpOnly: true
+            })
+            await Data.updateOne({ _id: id }, {
+                $push: { tokens: uuid }
+            })
+            res.redirect('/')
         }
-        const token = jwt.sign(obj, process.env.SECRET_KEY)
-        res.cookie('jwt', token, {
-            expires: new Date(Date.now() + 86400000), // must add secure at production time
-            httpOnly: true
-        })
-        await Data.updateOne({ _id: id }, {
-            $push: { tokens: uuid }
-        })
-        res.redirect('/')
     } catch (error) {
         res.sendStatus(500)
     }

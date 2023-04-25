@@ -264,8 +264,8 @@
           le.innerHTML = ''
           document.getElementById('results').innerText = `Showing 1-12 of ${val.length} results`
           for (let i = 0; i < val.length; i++) {
-            let dis = val[i].price;
-            if (val[i].discountPrice) dis = val[i].discountPrice;
+            let price = `₹${val[i].price}`
+            if (val[i].discountPrice) price = `₹${val[i].discountPrice}<span class="fs-6 text-muted" style="text-decoration: line-through;margin-left: 1rem;font-weight: lighter;">₹${val[i].price}</span>`;
             le.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-6" onclick="go('{{shop}}','${val[i]._id}')">
                             <div class="product__item">
                                 <div class="product__item__pic pro" style="background-image: url('${val[i].thumbnail}');">
@@ -280,7 +280,7 @@
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </div>
-                                    <h5>₹${dis}</h5>
+                                    <h5>${price}</h5>
                                 </div>
                             </div>
                         </div>`
