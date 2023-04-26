@@ -250,7 +250,7 @@
                                 <img src="img/shop-details/details-payment.png" alt="">
                                 <ul>
                                     <li id="brand"><span>Brand:</span> 3812912</li>
-                                    <li><span>Categories:</span> {{cat}}</li>
+                                    <li id="cat"><span>Categories:</span> {{cat}}</li>
                                     <!-- <li><span>Tag:</span> Clothes, Skin, Body</li> -->
                                 </ul>
                             </div>
@@ -432,6 +432,12 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
     <script>
+        const capital = (str) => {
+            let temp = str.slice(0, 1);
+            temp = temp.toUpperCase();
+            temp += str.slice(1, str.length);
+            return temp;
+        }
         const funcp = async () => {
             let tmp = await fetch(`https://martdb.onrender.com/products?id={{id}}`)
             tmp = await tmp.json()
@@ -439,6 +445,11 @@
             const val = tmp
             document.title = val.title;
             document.getElementById('brand').innerHTML = `<span>Brand:</span> ${val.brand}`
+            let sTitle = val.category;
+            let li = sTitle.split('-');
+            sTitle = '';
+            for (let j = 0; j < li.length; j++) sTitle += (capital(li[j]) + ' ')
+            document.getElementById('cat').innerHTML = `<span>Categories:</span> ${sTitle}`;
             if (val.discountPrice) document.getElementById('price').innerHTML = `₹${val.discountPrice} <span>₹${val.price}</span>`
             else document.getElementById('price').innerHTML = `₹${val.price}`
             let shots = document.getElementById('shots')
@@ -473,13 +484,15 @@
             })
             console.log(val);
             for (let i = 0; i < val.length; i++) {
+                let price = `₹${val[i].price}`
+                if (val[i].discountPrice) price = `₹${val[i].discountPrice}<span class="fs-6 text-muted" style="text-decoration: line-through;margin-left: 1rem;font-weight: lighter;">₹${val[i].price}</span>`;
                 document.getElementById('rel').innerHTML += `<div class="col-lg-3 col-md-6 col-sm-6 col-sm-6" onclick="go('{{cat}}','${val[i]._id}')">
                     <div class="product__item sale">
                         <div class="product__item__pic pro" style="background-image:url('${val[i].thumbnail}');">
                             <span class="label">Sale</span>
                         </div>
                         <div class="product__item__text">
-                            <h6>${val[i].title}</h6>
+                            <h6>${val[i].title}</h6> 
                             <a href="#" class="add-cart">Shop Now</a>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
@@ -488,7 +501,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-o"></i>
                             </div>
-                            <h5>₹${val[i].price}</h5>
+                            <h5>₹${price}</h5>
                         </div>
                     </div>
                 </div>`
