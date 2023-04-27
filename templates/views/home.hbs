@@ -596,7 +596,8 @@
             tmp = tmp[0]
             dpic.src = tmp.thumbnail;
             dtitle.innerText = tmp.title;
-            dprice.innerText = `₹${tmp.price}`;
+            if (tmp.discountPrice) dprice.innerText = `₹${tmp.discountPrice}`;
+            else dprice.innerText = `₹${tmp.price}`;
             dlink.href = `/product?cat=${tmp.category}&id=${tmp._id}`
         }
         random()
