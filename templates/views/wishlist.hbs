@@ -8,7 +8,8 @@
     <meta name="keywords" content="indiMart, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Shop</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/fluency/96/000000/shopping-bag.png" type="image/x-icon">
+    <title>Wishlist</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
@@ -51,8 +52,8 @@
                     <li class="nav-item">
                         <a class="nav-link fs-5" aria-current="page" href="/">Home</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link fs-5" href="/shop">Shop</a>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 text-tertiary" href="/shop">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fs-5 text-tertiary" href="/contacts">Contacts</a>
@@ -91,11 +92,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__text">
-                        <h4 class="cat">Shop</h4>
+                        <h4>Shop</h4>
                         <div class="breadcrumb__links">
                             <a href="/">Home</a>
-                            <a href="/shop">Shop</a>
-                            <span class="cat">{{shop}}</span>
+                            <span>Shop</span>
                         </div>
                     </div>
                 </div>
@@ -111,25 +111,13 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="shop__product__option__left">
-                            <p id="results">Showing 1–12 of 126 results</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="shop__product__option__right">
-                            <p>Sort by Price:</p>
-                            <div class="nice-select" tabindex="0"><span class="current">Normal</span>
-                                <ul class="list">
-                                    <li data-value="0" class="option selected" onclick="addp(0)">Normal</li>
-                                    <li data-value="1" class="option focus" onclick="addp(1)">Low To High</li>
-                                    <li data-value="-1" class="option" onclick="addp(-1)">High To Low</li>
-                                </ul>
-                            </div>
+                            <p class="fs-5">Showing Categories</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row" id="lele">
-                {{!-- <div class="col-lg-4 col-md-6 col-sm-6">
+                <!-- <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
                             <ul class="product__hover">
@@ -166,18 +154,7 @@
                             </div>
                         </div>
                     </div>
-                </div> --}}
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="product__pagination">
-                        <a class="active" href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <span>...</span>
-                        <a href="#">21</a>
-                    </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -209,62 +186,35 @@
             return temp;
         }
         let le = document.getElementById('lele')
-        const addp = (Sort) => {
-            fetch(`https://martdb.onrender.com/products?cat={{shop}}`)
+        const addp = () => {
+            fetch(`https://martdb.onrender.com/category`)
                 .then(res => res.json())
                 .then((tmp) => {
                     console.log(tmp)
                     let val = tmp
-                    if (Sort > 0) val.sort((a, b) => {
-                        let ap = a.price;
-                        if (a.discountPrice) ap = a.discountPrice;
-                        let bp = b.price;
-                        if (b.discountPrice) bp = b.discountPrice;
-                        return ap - bp;
-                    })
-                    if (Sort < 0) val.sort((a, b) => {
-                        let ap = a.price;
-                        if (a.discountPrice) ap = a.discountPrice;
-                        let bp = b.price;
-                        if (b.discountPrice) bp = b.discountPrice;
-                        return bp - ap;
-                    })
                     console.log(val)
-                    let sTitle = '{{shop}}';
-                    let li = sTitle.split('-');
-                    sTitle = '';
-                    for (let j = 0; j < li.length; j++) sTitle += (capital(li[j]) + ' ')
-                    li = document.getElementsByClassName('cat');
-                    for (let i = 0; i < li.length; i++) li[i].innerHTML = sTitle;
                     le.innerHTML = ''
-                    document.getElementById('results').innerText = `Showing 1-12 of ${val.length} results`
                     for (let i = 0; i < val.length; i++) {
-                        let price = `₹${val[i].price}`
-                        if (val[i].discountPrice) price = `₹${val[i].discountPrice}<span class="fs-6 text-muted" style="text-decoration: line-through;margin-left: 1rem;font-weight: lighter;">₹${val[i].price}</span>`;
-                        le.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-6" onclick="go('{{shop}}','${val[i]._id}')">
+                        let sTitle = val[i].title;
+                        let li = sTitle.split('-');
+                        sTitle = '';
+                        for (let j = 0; j < li.length; j++) sTitle += (capital(li[j]) + ' ')
+                        le.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-6" onclick="go('${val[i].title}')">
                             <div class="product__item">
                                 <div class="product__item__pic pro" style="background-image: url('${val[i].thumbnail}');">
                                 </div>
                                 <div class="product__item__text">
-                                    <h6>${val[i].title}</h6>
-                                    <a href="#" class="add-cart">Shop Now</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>${price}</h5>
+                                    <h6 style="text-align: center;" class="fs-6">${sTitle}</h6>
+                                    <a href="#" class="add-cart">Explore Now</a>
                                 </div>
                             </div>
                         </div>`
                     }
                 })
         }
-        addp(0)
-        const go = (c, n) => {
-            open(`/product?cat=${c}&id=${n}`, '_self')
+        addp()
+        const go = (c) => {
+            open(`/shop?cat=${c}`, '_self')
         }
     </script>
 </body>

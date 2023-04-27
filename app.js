@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express')
 const app = express()
-const PORT = 3000
+const PORT = process.env.port || 3000;
 const path = require('path')
 const hbs = require('hbs')
 const jwt = require('jsonwebtoken')
@@ -80,17 +80,12 @@ app.get('/pay', (req, res) => {
     res.sendFile(__dirname + '/src/checkout.html')
 })
 
-// app.get('/wishlist', async (req, res) => {
-//     const cookie = req.cookies.jwt;
-//     if (!cookie) res.redirect('/login')
-//     else {
-//         const id = jwt.verify(cookie, process.env.SECRET_KEY);
-//         const tmp = await Data.findOne({ _id: id });
-//         const user = tmp.name.split(" ", 1);
-//         res.render("home.hbs", {
-//             iname: user
-//         })
-//     }
+// app.get('/wishlist',auth, async (req, res) => {
+//     const id =req.id;
+//     const tmp = await Data.findOne({ _id: id }).select({
+//         name: 1,
+//         cart: 1
+//     });
 // })
 
 app.get('/cart', auth, async (req, res) => {
@@ -151,11 +146,10 @@ app.post('/login', async (req, res) => {
     //console.log(req.body);
     try {
         const tmp = await Data.findOne({ email: req.body.email })
-        const check = await bcrypt.compare(req.body.password, tmp.password)
         if (!tmp) res.status(400).render('bad.hbs', {
             message: 'email id does not exists'
         })
-        else if (!check) res.status(400).render('bad.hbs', {
+        else if (!(await bcrypt.compare(req.body.password, tmp.password))) res.status(400).render('bad.hbs', {
             message: 'password is incorrect'
         })
         else {

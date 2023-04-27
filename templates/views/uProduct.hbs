@@ -95,7 +95,7 @@
                         <div class="product__details__breadcrumb">
                             <a href="/">Home</a>
                             <a href="/shop">Shop</a>
-                            <a href="/shop?cat={{cat}}">{{cat}}</a>
+                            <a href="/shop?cat={{cat}}" id="cTitle">{{cat}}</a>
                             <span id="ntitle">{{name}}</span>
                         </div>
                     </div>
@@ -426,8 +426,9 @@
             let sTitle = val.category;
             let li = sTitle.split('-');
             sTitle = '';
-            for (let j = 0; j < li.length; j++) sTitle += (capital(li[j]) + ' ')
+            for (let j = 0; j < li.length; j++) sTitle += (capital(li[j]) + ' ');
             document.getElementById('cat').innerHTML = `<span>Categories:</span> ${sTitle}`;
+            document.getElementById('cTitle').innerHTML = sTitle;
             if (val.discountPrice) document.getElementById('price').innerHTML = `₹${val.discountPrice} <span>₹${val.price}</span>`
             else document.getElementById('price').innerHTML = `₹${val.price}`
             let shots = document.getElementById('shots')
