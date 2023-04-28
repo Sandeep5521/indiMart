@@ -448,9 +448,10 @@
                 if (curr._id != '{{id}}') return curr;
             })
             console.log(val);
-            for (let i = 0; i < val.length; i++) {
-                let price = `₹${val[i].price}`
-                if (val[i].discountPrice) price = `₹${val[i].discountPrice}<span class="fs-6 text-muted" style="text-decoration: line-through;margin-left: 1rem;font-weight: lighter;">₹${val[i].price}</span>`;
+            tmp = (val.length > 8) ? 8 : val.length;
+            for (let i = 0; i < tmp; i++) {
+                let price = `${val[i].price}`
+                if (val[i].discountPrice) price = `${val[i].discountPrice}<span class="fs-6 text-muted" style="text-decoration: line-through;margin-left: 1rem;font-weight: lighter;">₹${val[i].price}</span>`;
                 document.getElementById('rel').innerHTML += `<div class="col-lg-3 col-md-6 col-sm-6 col-sm-6" onclick="go('{{cat}}','${val[i]._id}')">
                     <div class="product__item sale">
                         <div class="product__item__pic pro" style="background-image:url('${val[i].thumbnail}');">
