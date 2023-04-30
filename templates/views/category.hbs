@@ -157,11 +157,11 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="product__pagination">
-            <a class="active" href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <span>...</span>
-            <a href="#">21</a>
+            <a href="#" id="prev" onclick="prev()"><i class="fa fa-angle-double-left" style="font-size:16px;"></i></a>
+            <a href="#" class="active page" onclick="pagef(event)">1</a>
+            <a href="#" class="page" onclick="pagef(event)">2</a>
+            <a href="#" class="page" onclick="pagef(event)">3</a>
+            <a href="#" id="next" onclick="next()"><i class="fa fa-angle-double-right" style="font-size:16px;"></i></a>
           </div>
         </div>
       </div>
@@ -206,8 +206,9 @@
       return temp;
     }
     let le = document.getElementById('lele')
+    let page = 1, sum = 0;
     const addp = (Sort) => {
-      fetch(`https://martdb.onrender.com/products?cat={{shop}}`)
+      fetch(`https://martdb.onrender.com/products?cat={{shop}}&page=${page}&limit=5`)
         .then(res => res.json())
         .then((tmp) => {
           console.log(tmp)
@@ -234,7 +235,6 @@
           li = document.getElementsByClassName('cat');
           for (let i = 0; i < li.length; i++) li[i].innerHTML = sTitle;
           le.innerHTML = ''
-          document.getElementById('results').innerText = `Showing 1-12 of ${val.length} results`
           for (let i = 0; i < val.length; i++) {
             let price = `₹${val[i].price}`
             if (val[i].discountPrice) price = `₹${val[i].discountPrice}<span class="fs-6 text-muted" style="text-decoration: line-through;margin-left: 1rem;font-weight: lighter;">₹${val[i].price}</span>`;
@@ -263,6 +263,64 @@
     const go = (c, n) => {
       open(`/product?cat=${c}&id=${n}`, '_self')
     }
+    const pagef = (event) => {
+      let li = document.getElementsByClassName('page');
+      for (let i = 0; i < li.length; i++) li[i].classList.remove('active');
+      event.target.classList.add('active');
+      page = Number(event.target.innerHTML)
+      console.log(page)
+      addp(0)
+    }
+    const next = () => {
+      console.log('next')
+      if (page === Math.ceil(sum / 5)) return;
+      let li = document.getElementsByClassName('page');
+      for (let i = 0; i < li.length; i++) li[i].classList.remove('active');
+      page++;
+      if (page === Number(li[li.length - 1].innerHTML) + 1) {
+        let tmp = page;
+        for (let i = 0; i < li.length; i++)
+          li[i].innerHTML = tmp++;
+      }
+      let flag = (page === Math.ceil(sum / 5)) ? 0 : page;
+      for (let i = 0; i < li.length; i++) {
+        if (flag === 1) {
+          li[i].style.display = 'none';
+          continue;
+        }
+        if (li[i].innerHTML === String(page)) {
+          li[i].classList.add('active');
+          flag++;
+        }
+      }
+      addp(0);
+    }
+
+    const prev = () => {
+      console.log('prev')
+      let li = document.getElementsByClassName('page');
+      if (page === 1) return;
+      for (let i = 0; i < li.length; i++) {
+        li[i].style.display = 'inline-block';
+        li[i].classList.remove('active');
+      }
+      page--;
+      if (page === Number(li[0].innerHTML) - 1) {
+        let tmp = page;
+        for (let i = li.length - 1; i >= 0; i--) li[i].innerHTML = tmp--;
+      }
+      for (let i = 0; i < li.length; i++) if (li[i].innerHTML === String(page)) li[i].classList.add('active');
+      addp(0);
+    }
+
+    const total = async () => {
+      let tmp = await fetch(`https://martdb.onrender.com/category?name={{shop}}`);
+      tmp = await tmp.json();
+      document.getElementById('results').innerText = `Showing 1-12 of ${tmp.products} results`;
+      sum = tmp.products;
+      console.log(sum)
+    }
+    total()
   </script>
 </body>
 
