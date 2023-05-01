@@ -222,7 +222,7 @@
                 </div>
             </div>
             <div class="row product__filter">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                <div class="rand col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="/img/product/product-1.jpg">
                             <span class="label">New</span>
@@ -258,7 +258,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                <div class="rand col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="/img/product/product-2.jpg">
                             <ul class="product__hover">
@@ -293,7 +293,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                <div class="rand col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item sale">
                         <div class="product__item__pic set-bg" data-setbg="/img/product/product-3.jpg">
                             <span class="label">Sale</span>
@@ -329,7 +329,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                <div class="rand col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="/img/product/product-4.jpg">
                             <ul class="product__hover">
@@ -364,7 +364,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                <div class="rand col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="/img/product/product-5.jpg">
                             <ul class="product__hover">
@@ -399,7 +399,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                <div class="rand col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item sale">
                         <div class="product__item__pic set-bg" data-setbg="/img/product/product-6.jpg">
                             <span class="label">Sale</span>
@@ -435,7 +435,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                <div class="rand col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="/img/product/product-7.jpg">
                             <ul class="product__hover">
@@ -470,7 +470,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                <div class="rand col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="/img/product/product-8.jpg">
                             <ul class="product__hover">
@@ -597,9 +597,38 @@
             dpic.src = tmp.thumbnail;
             dtitle.innerText = tmp.title;
             if (tmp.discountPrice) dprice.innerText = `₹${tmp.discountPrice}`;
-            else dprice.innerText = `₹${tmp.price}`;
+            else dprice.innerText = `₹${Math.ceil(tmp.price)}`;
             dlink.href = `/product?cat=${tmp.category}&id=${tmp._id}`
         }
+        const rand = async () => {
+            let tmp = await fetch('https://martdb.onrender.com/random?limit=8');
+            tmp = await tmp.json();
+            console.log(tmp);
+            let val = document.getElementsByClassName('rand');
+            for (let i = 0; i < val.length; i++) {
+                let sale = val[i].classList.contains('hot-sales')
+                sale = (sale) ? '<span class="label" style="color:white;background:black;">Sale</span>' : "";
+                let price = `${tmp[i].price}`
+                if (tmp[i].discountPrice) price = `${tmp[i].discountPrice}<span class="fs-6 text-muted" style="text-decoration: line-through;margin-left: 1rem;font-weight: lighter;">₹${tmp[i].price}</span>`;
+                val[i].innerHTML = `<div class="product__item">
+                        <div class="product__item__pic" onclick="go('${tmp[i].category}','${tmp[i]._id}')" style="background-image: url('${tmp[i].thumbnail}');background-size: cover;">${sale}
+                        </div>
+                        <div class="product__item__text">
+                            <h6>${tmp[i].title}</h6>
+                            <a href="/shop" class="add-cart">+ Add To Cart</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹${price}</h5>
+                        </div>
+                    </div>`;
+            }
+        }
+        rand()
         random()
     </script>
 </body>
