@@ -92,10 +92,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__text">
-                        <h4>Shop</h4>
+                        <h4>Wishlist</h4>
                         <div class="breadcrumb__links">
                             <a href="/">Home</a>
-                            <span>Shop</span>
+                            <a href="/shop">Shop</a>
+                            <span>Wishlist</span>
                         </div>
                     </div>
                 </div>
@@ -111,13 +112,13 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="shop__product__option__left">
-                            <p class="fs-5">Showing Categories</p>
+                            <p class="fs-5">Showing Wishlist</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row" id="lele">
-                <!-- <div class="col-lg-4 col-md-6 col-sm-6">
+                {{!-- <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
                             <ul class="product__hover">
@@ -154,7 +155,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div> --}}
             </div>
         </div>
     </section>
@@ -179,42 +180,46 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
     <script>
-        const capital = (str) => {
-            let temp = str.slice(0, 1);
-            temp = temp.toUpperCase();
-            temp += str.slice(1, str.length);
-            return temp;
-        }
         let le = document.getElementById('lele')
-        const addp = () => {
-            fetch(`https://martdb.onrender.com/category`)
-                .then(res => res.json())
-                .then((tmp) => {
-                    console.log(tmp)
-                    let val = tmp
-                    console.log(val)
-                    le.innerHTML = ''
-                    for (let i = 0; i < val.length; i++) {
-                        let sTitle = val[i].title;
-                        let li = sTitle.split('-');
-                        sTitle = '';
-                        for (let j = 0; j < li.length; j++) sTitle += (capital(li[j]) + ' ')
-                        le.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-6" onclick="go('${val[i].title}')">
+        const addf = async (id) => {
+            let val = await fetch(`https://martdb.onrender.com/products?id=${id}`);
+            val = await val.json();
+            console.log(val)
+            let price = `${val.price}`
+            if (val.discountPrice) price = `${val.discountPrice}<span class="fs-6 text-muted" style="text-decoration: line-through;margin-left: 1rem;font-weight: lighter;">₹${val.price}</span>`;
+            le.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-6" onclick="go('${val.category}','${val._id}')">
                             <div class="product__item">
-                                <div class="product__item__pic pro" style="background-image: url('${val[i].thumbnail}');">
+                                <div class="product__item__pic pro" style="background-image: url('${val.thumbnail}');">
                                 </div>
                                 <div class="product__item__text">
-                                    <h6 style="text-align: center;" class="fs-6">${sTitle}</h6>
+                                    <h6 style="text-align: center;" class="fs-6">${val.title}</h6>
                                     <a href="#" class="add-cart">Explore Now</a>
+                                    <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <h5>₹${price}</h5>
                                 </div>
                             </div>
                         </div>`
-                    }
+        }
+        const addp = () => {
+            fetch(`/wishlist?id={{id}}`)
+                .then(res => res.json())
+                .then((tmp) => {
+                    tmp = tmp.favourites;
+                    console.log(tmp)
+                    le.innerHTML = ''
+                    for (let i = 0; i < tmp.length; i++) addf(tmp[i]);
                 })
         }
         addp()
-        const go = (c) => {
-            open(`/shop?cat=${c}`, '_self')
+        console.log('hi')
+        const go = (c, n) => {
+            open(`/product?cat=${c}&id=${n}`, '_self')
         }
     </script>
 </body>

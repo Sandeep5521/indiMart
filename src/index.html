@@ -651,11 +651,11 @@
                 let price = `${tmp[i].price}`
                 if (tmp[i].discountPrice) price = `${tmp[i].discountPrice}<span class="fs-6 text-muted" style="text-decoration: line-through;margin-left: 1rem;font-weight: lighter;">₹${tmp[i].price}</span>`;
                 val[i].innerHTML = `<div class="product__item">
-                        <div class="product__item__pic" onclick="go('${tmp[i].category}','${tmp[i]._id}')" style="background-image: url('${tmp[i].thumbnail}');background-size: cover;">${sale}
+                        <div class="product__item__pic" onclick="go('${tmp[i].category}','${tmp[i]._id}')" style="background-image: url('${tmp[i].thumbnail}');background-size: cover;cursor:pointer;">${sale}
                         </div>
                         <div class="product__item__text">
                             <h6>${tmp[i].title}</h6>
-                            <a href="/shop" class="add-cart">+ Add To Cart</a>
+                            <a href="/shop" class="add-cart">Shop Now</a>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>

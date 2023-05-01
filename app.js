@@ -61,16 +61,18 @@ app.get('/product', auth, async (req, res) => {
     const id = req.id
     const tmp = await Data.findOne({ _id: id });
     let user = tmp.name.split(" ", 1);
-    let check = 0;
-    const li = tmp.cart;
+    let check = 0, fav = 0;
+    const li = tmp.cart, flist = tmp.favourites;
     for (let i = 0; i < li.length; i++) if (li[i] === req.query.id) check = 1;
+    for (let i = 0; i < flist.length; i++) if (flist[i] === req.query.id) fav = 1;
     user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
     if (req.query.id && req.query.cat) {
         res.render("uProduct.hbs", {
             iname: 'Hi, ' + user,
             id: req.query.id,
             cat: req.query.cat,
-            check: check
+            check: check,
+            fav: fav
         })
     }
     else res.sendFile(__dirname + '/src/error.html')
@@ -80,13 +82,44 @@ app.get('/pay', (req, res) => {
     res.sendFile(__dirname + '/src/checkout.html')
 })
 
-// app.get('/wishlist',auth, async (req, res) => {
-//     const id =req.id;
-//     const tmp = await Data.findOne({ _id: id }).select({
-//         name: 1,
-//         cart: 1
-//     });
-// })
+app.get('/wishlist', auth, async (req, res) => {
+    const id = req.id
+    const tmp = await Data.findOne({ _id: id }).select({
+        name: 1,
+        favourites: 1
+    });
+    if (req.query.id) res.send(tmp)
+    else {
+        let user = tmp.name.split(" ", 1);
+        user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
+        res.render("wishlist.hbs", {
+            iname: 'Hi, ' + user,
+            id: id
+        })
+    }
+})
+
+app.post('/wishlist', auth, async (req, res) => {
+    try {
+        await Data.updateOne({ _id: req.id }, {
+            $push: { favourites: req.body.id }
+        })
+        res.send(true)
+    } catch (error) {
+        res.send(false)
+    }
+})
+
+app.delete('/wishlist', auth, async (req, res) => {
+    try {
+        await Data.updateOne({ _id: req.id }, {
+            $pull: { favourites: req.body.id }
+        })
+        res.send(true)
+    } catch (error) {
+        res.send(false)
+    }
+})
 
 app.get('/cart', auth, async (req, res) => {
     const id = req.id

@@ -220,7 +220,7 @@
                                 <a href="#" class="primary-btn" id="postp" onclick="postp()">add to cart</a>
                             </div>
                             <div class="product__details__btns__option">
-                                <a href="/wishlist"><i class="fa fa-heart"></i> add to wishlist</a>
+                                <a href="#" onclick="fav()" id="fav"><i class="fa fa-heart"></i> add to wishlist</a>
                                 <!-- <a href="#"><i class="fa fa-exchange"></i> Add To Compare</a> -->
                             </div>
                             <div class="product__details__last__option">
@@ -512,13 +512,47 @@
                 let tmp = await fetch('/cart', options)
                 tmp = await tmp.json()
                 console.log(tmp);
-                if (tmp && !flag) {
+                if (tmp) {
                     document.getElementById('postp').innerText = 'delete from cart';
                     flag++;
+                    open('/cart', '_self')
                 }
                 else if (tmp && flag) {
                     document.getElementById('postp').innerText = 'add to cart';
                     flag--;
+                }
+            } catch (error) {
+                console.log("bug");
+            }
+        }
+        let flagf = {{ fav }}
+        if (flagf) document.getElementById('fav').innerHTML = '<i class="fa fa-heart"></i> delete from wishlist';
+        else document.getElementById('fav').innerHTML = '<i class="fa fa-heart"></i> add to wishlist';
+        const fav = async () => {
+            let param;
+            if (flagf) param = 'DELETE'
+            if (!flagf) param = 'POST'
+            const options = {
+                method: param,
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: '{{id}}'
+                })
+            };
+            try {
+                let tmp = await fetch('/wishlist', options)
+                tmp = await tmp.json()
+                console.log(tmp);
+                if (tmp && !flagf) {
+                    document.getElementById('fav').innerHTML = '<i class="fa fa-heart"></i> delete from wishlist';
+                    flagf++;
+                    //open('/wishlist', '_self')
+                }
+                else if (tmp && flagf) {
+                    document.getElementById('fav').innerHTML = '<i class="fa fa-heart"></i> add to wishlist';
+                    flagf--;
                 }
             } catch (error) {
                 console.log("bug");
