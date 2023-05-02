@@ -23,6 +23,12 @@ const auth = (req, res, next) => {
             })
             else res.sendFile(path.join(__dirname, '../src/error.html'))
         }
+        else if (String(req.url).match(/search/i) == 'search') {
+            if (req.query.s) res.render("search.hbs", {
+                query: req.query.s
+            })
+            else res.sendFile(path.join(__dirname, '../src/shop.html'));
+        }
         else if (String(req.url).match(/shop/i) == 'shop') {
             if (req.query.cat) res.render("category.hbs", {
                 shop: req.query.cat
