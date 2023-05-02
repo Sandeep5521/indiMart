@@ -74,11 +74,11 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2 bg-light text-black" type="search" placeholder="Search"
+                <span class="d-flex">
+                    <input id="inp" class="form-control me-2 bg-light text-black" type="search" placeholder="Search"
                         aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
+                    <button class="btn btn-outline-light" onclick="search()">Search</button>
+                </span>
             </div>
         </div>
     </nav>
@@ -203,6 +203,7 @@
     <script src="/js/mixitup.min.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/search.js"></script>
     <script>
         const capital = (str) => {
             let temp = str.slice(0, 1);
