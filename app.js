@@ -78,6 +78,42 @@ app.get('/product', auth, async (req, res) => {
     else res.sendFile(__dirname + '/src/error.html')
 })
 
+app.get('/user', auth, async (req, res) => {
+    const id = req.id
+    const tmp = await Data.findOne({ _id: id });
+    let user = tmp.name.split(" ", 1);
+    const full = tmp.name.split(" ");
+    let name = '';
+    for (let i = 0; i < full.length; i++) name += (full[i].charAt(0).toUpperCase() + full[i].slice(1) + ' ');
+    // name = name.slice(0, name.length - 1);
+    user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
+    res.render("profile.hbs", {
+        iname: 'Hi, ' + user,
+        name: name,
+        email: tmp.email,
+        mobile: (tmp.mobile) ? tmp.mobile : 'Add Mobile No.',
+        address: (tmp.address) ? tmp.address : 'Add Address'
+    })
+})
+
+app.post('/user', auth, async (req, res) => {
+    const id = req.id
+    try {
+        const tmp = await Data.findOneAndUpdate({ _id: id }, {
+            $set: {
+                name: req.body.name,
+                email: req.body.email,
+                mobile: req.body.mobile,
+                address: req.body.address
+            }
+        })
+        console.log(tmp);
+        res.send(true);
+    } catch (error) {
+        res.sendStatus(502);
+    }
+})
+
 app.get('/search', auth, async (req, res) => {
     const id = req.id
     const tmp = await Data.findOne({ _id: id });

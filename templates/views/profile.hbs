@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description"
+        content="IndiMart - Your one-stop-shop for all things Indian. Find a wide selection of authentic Indian products, including clothing, jewelry, home decor, and more. Enjoy fast and reliable shipping, competitive prices, and exceptional customer service. Shop now and experience the best of India at IndiMart.">
+    <meta name="keywords" content="indiMart, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="https://img.icons8.com/fluency/96/000000/shopping-bag.png" type="image/x-icon">
+    <title>My Profile</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <style>
+        .pro {
+            background-size: cover;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-body-tertiary bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand fs-1 fw-bold">indi<span class="text-danger">Mart</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link fs-5 text-tertiary" href="/shop">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 text-tertiary" href="/contacts">Contacts</a>
+                    </li>
+                    <li class="nav-item active dropdown fs-5">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{iname}}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-black" href="/user">My Profile</a></li>
+                            <li><a class="dropdown-item text-black" href="/orders">My Orders</a></li>
+                            <li><a class="dropdown-item text-black" href="/wishlist">My Wishlist</a></li>
+                            <li><a class="dropdown-item text-black" href="/cart">My Cart</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="/logout">Log out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <span class="d-flex">
+                    <input id="inp" class="form-control me-2 bg-light text-black" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-light" onclick="search()">Search</button>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    {{>tempNav}}
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option" style="background-color: #eee;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>My Profile</h4>
+                        <div class="breadcrumb__links">
+                            <a href="/">Home</a>
+                            <span>Profile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                alt="avatar" class="rounded-circle img-fluid" style="width: 150px;"
+                                onclick="triggerFileInput()">
+                            {{!-- <p></p>
+                            <form action="/user" method="post" id="my-form" style="display: none;">
+                                <input type="file" name="image" id="myFileInput" style="display: none;">
+                                <button type="submit">Change Picture</button>
+                            </form> --}}
+                            <h5 class="my-3" id="pic">{{name}}</h5>
+                            <div class="d-flex justify-content-center mb-2">
+                                <button type="button" id="edit" class="btn btn-outline-success ms-1"
+                                    onclick="Edit()">Edit
+                                    Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Full Name</p>
+                                </div>
+                                <div class="col-sm-9" id="Name">
+                                    <p class="text-muted mb-0">{{name}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email</p>
+                                </div>
+                                <div class="col-sm-9" id="Email">
+                                    <p class="text-muted mb-0">{{email}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Password</p>
+                                </div>
+                                <div class="col-sm-9" id="Password">
+                                    <p class="text-muted mb-0">*********</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Mobile</p>
+                                </div>
+                                <div class="col-sm-9" id="Mobile">
+                                    <p class="text-muted mb-0">{{mobile}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Address</p>
+                                </div>
+                                <div class="col-sm-9" id="Address">
+                                    <p class="text-muted mb-0">{{address}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section Begin -->
+    {{>footer}}
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.nice-select.min.js"></script>
+    <script src="/js/jquery.nicescroll.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/jquery.countdown.min.js"></script>
+    <script src="/js/jquery.slicknav.js"></script>
+    <script src="/js/mixitup.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/search.js"></script>
+    <script>
+        const edit = document.getElementById('edit')
+        let flag = false;
+        const save = async () => {
+            const options = {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: document.getElementById('Name').firstElementChild.value,
+                    email: document.getElementById('Email').firstElementChild.value,
+                    mobile: document.getElementById('Mobile').firstElementChild.value,
+                    address: document.getElementById('Address').firstElementChild.value
+                })
+            };
+
+            try {
+                let temp = await fetch('/user', options)
+                temp = await temp.json()
+                console.log(temp)
+                if (temp) {
+                    flag = false;
+                    const li = document.getElementsByClassName('col-sm-9');
+                    for (let i = 0; i < li.length; i++) {
+                        if (i == 2) continue;
+                        const tmp = li[i].firstElementChild.value;
+                        li[i].innerHTML = `<p class="text-muted mb-0">${tmp}</p>`
+                    }
+                    edit.innerText = 'Edit Profile';
+                }
+            } catch (error) {
+                //console.log(error);
+            }
+        }
+        const Edit = () => {
+            if (flag) save();
+            else {
+                edit.innerText = 'Save';
+                flag = true;
+                document.getElementById('inp').click();
+                const li = document.getElementsByClassName('col-sm-9');
+                for (let i = 0; i < li.length; i++) {
+                    if (i == 2) continue;
+                    const tmp = li[i].firstElementChild.innerText;
+                    li[i].innerHTML = `<input class="mb-0" value="${tmp}" placeholder="Add ${li[i].id}">`
+                }
+            }
+        }
+        /*const form = document.getElementById("my-form");
+        function triggerFileInput() {
+            const fileInput = document.getElementById("myFileInput");
+            fileInput.click();
+        }
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+        })*/
+    </script>
+</body>
+
+</html>

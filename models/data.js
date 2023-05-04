@@ -7,12 +7,21 @@ const dataSchema = mongoose.Schema({
         required: true,
         lowercase: true
     },
-    password: String,
-    email:String,
-    favourites:Array,
-    cart:Array,
-    orders:Array,
-    tokens:Array
+    image: String,
+    password: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    favourites: Array,
+    cart: Array,
+    orders: Array,
+    tokens: Array,
+    mobile: String,
+    address: String
 })
 
 const Data = new mongoose.model("Data", dataSchema);
