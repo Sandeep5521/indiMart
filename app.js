@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const { v4: uuidv4 } = require('uuid')
 const Sib = require('sib-api-v3-sdk');
+const multer = require('multer');
 //const validator = require('validator')
 app.use(express.static('public'))
 app.use(express.json())
@@ -27,6 +28,8 @@ const otp = require('./src/otp.js')
 const Data = require('./models/data.js')
 const bcrypt = require('bcryptjs');
 const auth = require('./middleware/auth.js');
+const storage = require('./middleware/storage.js');
+const upload = multer({ storage })
 const defaultClient = Sib.ApiClient.instance;
 const apiKey = defaultClient.authentications['api-key'];
 apiKey.apiKey = process.env.BLUE_KEY;
@@ -92,7 +95,8 @@ app.get('/user', auth, async (req, res) => {
         name: name,
         email: tmp.email,
         mobile: (tmp.mobile) ? tmp.mobile : 'Add Mobile No.',
-        address: (tmp.address) ? tmp.address : 'Add Address'
+        address: (tmp.address) ? tmp.address : 'Add Address',
+        image: (tmp.image) ? tmp.image.slice(7) : 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp'
     })
 })
 
@@ -109,6 +113,23 @@ app.post('/user', auth, async (req, res) => {
         })
         console.log(tmp);
         res.send(true);
+    } catch (error) {
+        res.sendStatus(502);
+    }
+})
+
+app.post('/upload', auth, upload.single('image'), async (req, res) => {
+    const id = req.id
+    console.log(req.body);
+    console.log(req.file);
+    try {
+        const tmp = await Data.findOneAndUpdate({ _id: id }, {
+            $set: {
+                image: req.file.path
+            }
+        })
+        // console.log(tmp);
+        res.redirect('/user');
     } catch (error) {
         res.sendStatus(502);
     }
