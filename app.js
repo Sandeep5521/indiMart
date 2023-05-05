@@ -149,8 +149,18 @@ app.get('/search', auth, async (req, res) => {
     else res.sendFile(__dirname + '/src/error.html')
 })
 
-app.get('/pay', (req, res) => {
-    res.sendFile(__dirname + '/src/checkout.html')
+app.get('/pay', auth, async (req, res) => {
+    const id = req.id
+    const tmp = await Data.findOne({ _id: id });
+    let user = tmp.name.split(" ", 1);
+    user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
+    if (req.query.order) res.render("bad.hbs", {
+        message: 'order is placed Successfully'
+    })
+    else res.render("checkout.hbs", {
+        iname: 'Hi, ' + user,
+        id: id
+    })
 })
 
 app.get('/wishlist', auth, async (req, res) => {
