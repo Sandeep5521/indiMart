@@ -211,13 +211,13 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="cart__discount">
+                    {{!-- <div class="cart__discount">
                         <h6>Discount codes</h6>
                         <form action="#">
                             <input type="text" placeholder="Coupon code">
                             <button type="submit">Apply</button>
                         </form>
-                    </div>
+                    </div> --}}
                     <div class="cart__total">
                         <h6>Cart total</h6>
                         <ul>
@@ -301,11 +301,15 @@
             const price = document.getElementById(val);
             const a = Number(Oprice.innerText)
             const b = Number(tmp)
-            total.innerHTML = `${Number(total.innerText) - Number(price.innerText) + (a * b)}`
-            price.innerText = `${a * b}`
+            if (!b) del(`del${val}`, val);
+            else {
+                total.innerHTML = `${Number(total.innerText) - Number(price.innerText) + (a * b)}`
+                price.innerText = `${a * b}`
+            }
         }
         const del = async (val, item) => {
             const bye = document.getElementById(val);
+            const price = document.getElementById(item)
             const options = {
                 method: 'DELETE',
                 headers: {
@@ -319,6 +323,7 @@
             try {
                 let tmp = await fetch('/cart', options)
                 tmp = await tmp.json()
+                total.innerHTML = `${Number(total.innerText) - Number(price.innerText)}`
                 console.log(tmp);
                 bye.remove();
             } catch (error) {

@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser')
 const { v4: uuidv4 } = require('uuid')
 const Sib = require('sib-api-v3-sdk');
 const multer = require('multer');
-//const validator = require('validator')
+const validator = require('validator')
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -102,6 +102,7 @@ app.get('/user', auth, async (req, res) => {
 
 app.post('/user', auth, async (req, res) => {
     const id = req.id
+    if (!validator.isEmail(req.body.email)) return res.send(false)
     try {
         const tmp = await Data.findOneAndUpdate({ _id: id }, {
             $set: {

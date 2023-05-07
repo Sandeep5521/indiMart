@@ -232,6 +232,9 @@
                     }
                     edit.innerText = 'Edit Profile';
                 }
+                else {
+                    document.getElementsByTagName('input')[3].classList.add('border-danger')
+                }
             } catch (error) {
                 //console.log(error);
             }
