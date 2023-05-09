@@ -242,12 +242,12 @@ app.delete('/cart', auth, async (req, res) => {
     }
 })
 
-app.get('/contacts', auth, async (req, res) => {
+app.get('/about', auth, async (req, res) => {
     const id = req.id
     const tmp = await Data.findOne({ _id: id });
     let user = tmp.name.split(" ", 1);
     user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
-    res.render("contact.hbs", {
+    res.render("about.hbs", {
         iname: 'Hi, ' + user
     })
 })

@@ -13,8 +13,8 @@ const auth = (req, res, next) => {
         if (req.url == '/') {
             res.sendFile(path.join(__dirname, '../src/index.html'));
         }
-        else if (req.url === '/contacts') {
-            res.sendFile(path.join(__dirname, '../src/contact.html'));
+        else if (req.url === '/about') {
+            res.sendFile(path.join(__dirname, '../src/about.html'));
         }
         else if (String(req.url).match(/product/i) == 'product') {
             if (req.query.cat && req.query.id) res.render("product.hbs", {
