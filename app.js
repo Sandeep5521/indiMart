@@ -421,6 +421,47 @@ app.patch('/password', async (req, res) => {
     }
 })
 
+app.get('/terms', auth, async (req, res) => {
+    const id = req.id
+    const tmp = await Data.findOne({ _id: id });
+    let user = tmp.name.split(" ", 1);
+    user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
+    res.render("terms.hbs", {
+        iname: 'Hi, ' + user
+    })
+})
+
+app.post('/contact', async (req, res) => {
+    if (!validator.isEmail(req.body.email)) return res.status.sendFile(__dirname + '/src/error.html')
+    let sender = {
+        email: req.body.email,
+        name: req.body.name
+    }
+    const receivers = [{ email: 'sundeep5521@gmail.com' }]
+    tranEmailApi.sendTransacEmail({
+        sender,
+        to: receivers,
+        subject: 'Feedback Request',
+        htmlContent: `${req.body.text}`
+    })
+        .then(console.log)
+        .catch(console.log)
+    sender = {
+        email: 'indimart@gmail.com',
+        name: 'indiMart'
+    }
+    tranEmailApi.sendTransacEmail({
+        sender,
+        to: [{ email: req.body.email }],
+        subject: 'Thank You for Your Valuable Feedback!',
+        htmlContent: `<div class="markdown prose w-full break-words dark:prose-invert light"><p>Dear ${req.body.name},</p><p>Thank you for choosing Indimart as your preferred destination for online shopping. We greatly appreciate your recent feedback and would like to express our gratitude for taking the time to share your thoughts with us.</p><p>Your feedback is vital to our continuous efforts in improving our website and enhancing the overall shopping experience for our valued customers like yourself. We understand that providing a seamless and enjoyable online shopping experience is crucial, and your input allows us to identify areas where we can further optimize our services.</p><p>Rest assured that your feedback has been noted, and our team will thoroughly review and analyze it. We take every comment seriously and consider each suggestion as an opportunity for growth and improvement.</p><p>We truly value your contribution as it helps us shape the future of Indimart. If you have any further feedback or suggestions, please feel free to reach out to us. We are here to listen and ensure that your voice is heard.</p><p>Once again, thank you for your valuable feedback. We look forward to serving you better and providing you with an exceptional shopping experience at Indimart.</p><p>Best regards,<br>
+            Sandeep<br>
+            Indimart Customer Support Team</p></div>`
+    }).then(console.log)
+        .catch(console.log)
+    res.redirect('/')
+})
+
 app.get('/db', async (req, res) => {
     try {
         const tmp = await Data.find()

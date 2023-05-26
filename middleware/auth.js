@@ -35,6 +35,9 @@ const auth = (req, res, next) => {
             })
             else res.sendFile(path.join(__dirname, '../src/shop.html'));
         }
+        else if (String(req.url).match(/terms/i) == 'terms') {
+            res.sendFile(path.join(__dirname, '../src/terms.html'))
+        }
         else res.redirect('/login');
     }
 }
