@@ -431,6 +431,11 @@ app.get('/terms', auth, async (req, res) => {
     })
 })
 
+app.post('/review', auth, async (req, res) => {
+    console.log(req.body);
+    res.redirect(`/product?cat=${req.body.category}&id=${req.body.pid}`)
+})
+
 app.post('/contact', async (req, res) => {
     if (!validator.isEmail(req.body.email)) return res.status.sendFile(__dirname + '/src/error.html')
     let sender = {

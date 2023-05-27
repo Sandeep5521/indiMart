@@ -286,7 +286,7 @@
       }
       let flag = (page === Math.ceil(sum / 5)) ? 0 : page;
       for (let i = 0; i < li.length; i++) {
-        if (flag === 1) {
+        if (flag === 1 || li[i].innerHTML > String(Math.ceil(sum / 5))) {
           li[i].style.display = 'none';
           continue;
         }
