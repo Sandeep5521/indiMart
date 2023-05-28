@@ -491,6 +491,26 @@ app.post('/contact', async (req, res) => {
     res.redirect('/')
 })
 
+app.get('/privacy', auth, async (req, res) => {
+    const id = req.id
+    const tmp = await Data.findOne({ _id: id });
+    let user = tmp.name.split(" ", 1);
+    user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
+    res.render("privacy.hbs", {
+        iname: 'Hi, ' + user
+    })
+})
+
+app.get('/refund', auth, async (req, res) => {
+    const id = req.id
+    const tmp = await Data.findOne({ _id: id });
+    let user = tmp.name.split(" ", 1);
+    user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
+    res.render("refund.hbs", {
+        iname: 'Hi, ' + user
+    })
+})
+
 app.get('/db', async (req, res) => {
     try {
         const tmp = await Data.find()

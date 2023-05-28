@@ -8,15 +8,16 @@
     <meta name="keywords" content="indiMart, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <title>About Us</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/fluency/96/000000/shopping-bag.png" type="image/x-icon">
+    <title>Refund Policy</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
         rel="stylesheet">
 
     <!-- Css Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
@@ -24,12 +25,6 @@
     <link rel="stylesheet" href="/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
-    <style>
-        .pro {
-            background-image: url("https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
-            background-size: cover;
-        }
-    </style>
 </head>
 
 <body>
@@ -38,7 +33,6 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Offcanvas Menu Begin -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-body-tertiary bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
             <a href="/" class="navbar-brand fs-1 fw-bold">indi<span class="text-danger">Mart</span></a>
@@ -56,20 +50,21 @@
                         <a class="nav-link fs-5 text-tertiary" href="/shop">Shop</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5 active text-tertiary" href="/about">About</a>
+                        <a class="nav-link fs-5 text-tertiary" href="/about">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fs-5 text-tertiary" href="/login">Sign in</a>
                     </li>
                 </ul>
-                <span class="d-flex">
+                <span class="d-flex" role="search">
                     <input id="inp" class="form-control me-2 bg-light text-black" type="search" placeholder="Search"
                         aria-label="Search">
-                    <button class="btn btn-outline-light" onclick="search()">Search</button>
+                    <button class="btn btn-outline-light" type="submit">Search</button>
                 </span>
             </div>
         </div>
     </nav>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-body-tertiary bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
             <a href="/" class="navbar-brand fs-1 fw-bold">indi<span class="text-danger">Mart</span></a>
@@ -83,9 +78,6 @@
                     <li class="nav-item">
                         <a class="nav-link active fs-5" aria-current="page" href="#">Home</a>
                     </li>
-                    {{!-- <li class="nav-item">
-                        <a class="nav-link fs-5" href="#">Shop</a>
-                    </li> --}}
                     <li class="nav-item dropdown fs-5">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -108,181 +100,70 @@
             </div>
         </div>
     </nav>
-    <!-- Header Section End -->
 
+    <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-option">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__text">
-                        <h4>About Us</h4>
-                        <div class="breadcrumb__links">
-                            <a href="/">Home</a>
-                            <span>About Us</span>
-                        </div>
+                        <h4>Cancellation & Refund Policy</h4>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Breadcrumb Section End -->
+    <section class="banner spad" style="/*! padding: 0; */padding: 3rem 3rem 3rem 3rem;">
+        <div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]">
+            <div class="flex flex-grow flex-col gap-3">
+                <div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap break-words">
+                    <div class="markdown prose w-full break-words dark:prose-invert light">
 
-    <!-- About Section Begin -->
-    <section class="about spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="about__pic">
-                        <img src="img/about/about-us.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="about__item">
-                        <h4>Who We Are ?</h4>
-                        <p>At IndiMart, we are passionate about providing our customers with the best online shopping
-                            experience possible. Our team is dedicated to sourcing high-quality products from around the
-                            world and making them available to you at affordable prices. We believe in creating a
-                            user-friendly platform that is easy to navigate and offers a wide range of products to
-                            choose from. Our mission is to provide you with exceptional customer service and to build a
-                            long-lasting relationship with our customers. Thank you for choosing IndiMart for your
-                            online shopping needs.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="about__item">
-                        <h4>Who We Do ?</h4>
-                        <p>We are an ecommerce website that provides customers with a vast range of high-quality
-                            products at affordable prices. Our platform is designed to be user-friendly, offering easy
-                            navigation and a hassle-free shopping experience. We work tirelessly to ensure that our
-                            customers have access to the latest trends and products from around the world. Our team is
-                            committed to providing exceptional customer service, ensuring that your shopping experience
-                            with us is a pleasant one. Thank you for choosing IndiMart as your go-to destination for
-                            online shopping.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="about__item">
-                        <h4>Why Choose Us</h4>
-                        <p>We understand that you have many options when
-                            it comes to online shopping, which is why we strive to provide you with the best possible
-                            shopping experience. Here are some reasons why you should choose IndiMart:- We offer a vast
-                            range of high-quality products from around the
-                            world at affordable prices, User-friendly platform: Our website is designed to be
-                            user-friendly, making it easy to
-                            navigate and find the products you are looking for,Secure shopping: We use the latest
-                            security measures to ensure that your personal and
-                            financial information is protected when you shop with us.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- About Section End -->
+                        <p>Thank you for shopping with IndiMart. We strive to provide you with the best online shopping
+                            experience and want to ensure that you are completely satisfied with your purchase. In the
+                            event that you need to cancel an order or request a refund, please review our Cancellation
+                            &amp; Refund Policy outlined below.</p>
+                        <ol>
+                            <li>
+                                <p>Cancellation Policy: 1.1 Order Cancellation by the Customer: If you wish to cancel
+                                    your order, please contact our customer support team as soon as possible. We accept
+                                    cancellation requests within 24 hours of placing the order. After 24 hours, the
+                                    cancellation request may not be possible due to order processing and shipping
+                                    preparations.</p>
+                                <p>1.2 Order Cancellation by IndiMart: IndiMart reserves the right to cancel an order
+                                    under certain circumstances, including but not limited to: - Unavailability of the
+                                    product or stock. - Inaccurate pricing or product information. - Fraudulent or
+                                    suspicious transactions. - Non-compliance with our Terms of Service. In such cases,
+                                    we will notify you of the cancellation and provide a full refund of the order
+                                    amount.</p>
+                            </li>
+                            <li>
+                                <p>Refund Policy: 2.1 Eligibility for Refunds: We offer refunds in the following
+                                    scenarios: - Order cancellation requested within the stipulated time frame. -
+                                    Receipt of damaged, defective, or incorrect products.</p>
+                                <p>2.2 Refund Process: To initiate a refund, please contact our customer support team
+                                    with relevant details such as order number, product information, and reason for the
+                                    refund request. Our team will guide you through the refund process and assist with
+                                    any required documentation. Refunds will be processed using the same payment method
+                                    used for the original purchase. Please note that refund processing times may vary
+                                    depending on the payment gateway and financial institution involved.</p>
+                                <p>2.3 Non-Refundable Items and Services: The following items and services are
+                                    non-refundable: - Digital products or downloadable content once accessed or
+                                    downloaded. - Products with hygiene concerns (e.g., personal care items, intimate
+                                    apparel). - Perishable goods such as food, flowers, or custom-made items. - Services
+                                    that have already been provided or consumed.</p>
+                                <p>2.4 Return Shipping: In the case of eligible returns or exchanges, IndiMart will
+                                    provide return shipping instructions and, if applicable, cover the return shipping
+                                    costs. Please follow the provided instructions to ensure a smooth return process.
+                                </p>
+                            </li>
 
-    <!-- Testimonial Section Begin -->
-    <section class="testimonial">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 p-0">
-                    <div class="testimonial__text">
-                        <span class="icon_quotations"></span>
-                        <p>“Going out after work? Take your butane curling iron with you to the office, heat it up,
-                            style your hair before you leave the office and you won’t have to make a trip back home.”
+                        </ol>
+                        <p>Please note that this Cancellation &amp; Refund Policy is subject to change at our
+                            discretion. It is advisable to review this policy periodically for any updates or revisions.
                         </p>
-                        <div class="testimonial__author">
-                            <div class="testimonial__author__pic">
-                                <img src="img/about/testimonial-author.jpg" alt="">
-                            </div>
-                            <div class="testimonial__author__text">
-                                <h5>Augusta Schultz</h5>
-                                <p>Fashion Design</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 p-0">
-                    <div class="testimonial__pic set-bg" data-setbg="img/about/testimonial-pic.jpg"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Testimonial Section End -->
 
-    <!-- Counter Section Begin -->
-    <section class="counter spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="counter__item">
-                        <div class="counter__item__number">
-                            <h2 class="cn_num">102</h2>
-                        </div>
-                        <span>Our <br />Clients</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="counter__item">
-                        <div class="counter__item__number">
-                            <h2 class="cn_num">30</h2>
-                        </div>
-                        <span>Total <br />Categories</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="counter__item">
-                        <div class="counter__item__number">
-                            <h2 class="cn_num">102</h2>
-                        </div>
-                        <span>In <br />Country</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="counter__item">
-                        <div class="counter__item__number">
-                            <h2 class="cn_num">98</h2>
-                            <strong>%</strong>
-                        </div>
-                        <span>Happy <br />Customer</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Counter Section End -->
-
-    <!-- Team Section Begin -->
-    <section class="team spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <span>Our Team</span>
-                        <h2>Meet Our Team</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="justify-content:center;">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team__item">
-                        <img src="img/about/team-1.jpg" alt="">
-                        <h4>Sanskar Thakur</h4>
-                        <!-- <span>Time Pass Boy</span> -->
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team__item">
-                        <img src="img/about/team-2.jpg" alt="">
-                        <h4>Piyush Anand</h4>
-                        <!-- <span>C.E.O</span> -->
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team__item">
-                        <img src="img/about/team-3.jpg" alt="">
-                        <h4>Sandeep Sahu</h4>
-                        <!-- <span>Developer</span> -->
                     </div>
                 </div>
             </div>
@@ -334,8 +215,6 @@
             </div>
         </div>
     </section>
-    <!-- Contact Section End -->
-
     <!-- Footer Section Begin -->
     <footer class="footer">
         <div class="container">

@@ -45,6 +45,12 @@ const auth = async (req, res, next) => {
         else if (String(req.url).match(/terms/i) == 'terms') {
             res.sendFile(path.join(__dirname, '../src/terms.html'))
         }
+        else if (String(req.url).match(/privacy/i) == 'privacy') {
+            res.sendFile(path.join(__dirname, '../src/privacy.html'))
+        }
+        else if (String(req.url).match(/refund/i) == 'refund') {
+            res.sendFile(path.join(__dirname, '../src/refund.html'))
+        }
         else res.redirect('/login');
     }
 }
