@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const path = require('path')
-
-const auth = (req, res, next) => {
+const Data = require('../models/data.js')
+const auth = async (req, res, next) => {
     try {
         const token = req.cookies.jwt;
         const check = jwt.verify(token, process.env.SECRET_KEY)
@@ -21,6 +21,13 @@ const auth = (req, res, next) => {
                 id: req.query.id,
                 cat: req.query.cat
             })
+            else if (req.query.uid) {
+                const user = await Data.findOne({ _id: req.query.uid });
+                res.send({
+                    image: (user.image) ? user.image.slice(7) : 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp',
+                    name: user.name
+                })
+            }
             else res.sendFile(path.join(__dirname, '../src/error.html'))
         }
         else if (String(req.url).match(/search/i) == 'search') {

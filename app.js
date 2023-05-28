@@ -4,6 +4,7 @@ const app = express()
 const PORT = process.env.port || 3000;
 const path = require('path')
 const hbs = require('hbs')
+const fetch = require('node-fetch')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const { v4: uuidv4 } = require('uuid')
@@ -75,7 +76,15 @@ app.get('/product', auth, async (req, res) => {
             id: req.query.id,
             cat: req.query.cat,
             check: check,
-            fav: fav
+            fav: fav,
+            image: (tmp.image) ? tmp.image.slice(7) : 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp'
+        })
+    }
+    else if (req.query.uid) {
+        const user = await Data.findOne({ _id: req.query.uid });
+        res.send({
+            image: (user.image) ? user.image.slice(7) : 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp',
+            name: user.name
         })
     }
     else res.sendFile(__dirname + '/src/error.html')
@@ -432,8 +441,23 @@ app.get('/terms', auth, async (req, res) => {
 })
 
 app.post('/review', auth, async (req, res) => {
-    console.log(req.body);
-    res.redirect(`/product?cat=${req.body.category}&id=${req.body.pid}`)
+    //console.log(req.body);
+    const options = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            pid: req.body.pid,
+            id: req.id,
+            review: req.body.review,
+            stars: Number(req.body.star)
+        })
+    };
+    let tmp = await fetch('https://martdb.onrender.com/review', options)
+    tmp = await tmp.json()
+    //console.log(tmp);
+    res.redirect(`/product?cat=${req.body.category}&id=${req.body.pid}`);
 })
 
 app.post('/contact', async (req, res) => {

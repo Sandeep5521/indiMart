@@ -414,19 +414,24 @@
                                                 <div class="stars">
                                                     <input class="star star-5" id="star-5" type="radio" value="5"
                                                         name="star">
-                                                    <label class="star star-5" for="star-5"></label>
+                                                    <label class="star star-5" style="cursor: pointer;"
+                                                        for="star-5"></label>
                                                     <input class="star star-4" id="star-4" type="radio" value="4"
                                                         name="star">
-                                                    <label class="star star-4" for="star-4"></label>
+                                                    <label class="star star-4" style="cursor: pointer;"
+                                                        for="star-4"></label>
                                                     <input class="star star-3" id="star-3" type="radio" value="3"
                                                         name="star">
-                                                    <label class="star star-3" for="star-3"></label>
+                                                    <label class="star star-3" style="cursor: pointer;"
+                                                        for="star-3"></label>
                                                     <input class="star star-2" id="star-2" type="radio" value="2"
                                                         name="star">
-                                                    <label class="star star-2" for="star-2"></label>
+                                                    <label class="star star-2" style="cursor: pointer;"
+                                                        for="star-2"></label>
                                                     <input class="star star-1" id="star-1" type="radio" value="1"
                                                         name="star">
-                                                    <label class="star star-1" for="star-1"></label>
+                                                    <label class="star star-1" style="cursor: pointer;"
+                                                        for="star-1"></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -447,8 +452,8 @@
 
 
                 <div class="container-fluid px-1 py-5 mx-auto">
-                    <div class="row justify-content-center">
-                        <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center mb-5">
+                    <div class="row justify-content-center" id="reviews">
+                        {{!-- <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center mb-5">
                             <div class="card">
                                 <div class="row d-flex">
                                     <div class=""> <img class="profile-pic" src="https://i.imgur.com/V3ICjlm.jpg"
@@ -457,11 +462,11 @@
                                     <div class="d-flex flex-column">
                                         <h3 class="mt-2 mb-0">Mukesh Kumar</h3>
                                         <div>
-                                            <p class=""> <span class="fa fa-star star-active"></span> <span
-                                                    class="fa fa-star star-active"></span> <span
-                                                    class="fa fa-star star-active"></span> <span
-                                                    class="fa fa-star star-active"></span> <span
-                                                    class="fa fa-star star-inactive"></span></p>
+                                            <span class="fa fa-star star-active"></span> <span
+                                                class="fa fa-star star-active"></span> <span
+                                                class="fa fa-star star-active"></span> <span
+                                                class="fa fa-star star-active"></span> <span
+                                                class="fa fa-star star-inactive"></span></p>
                                         </div>
                                     </div>
                                     <div class="">
@@ -480,7 +485,7 @@
 
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -549,6 +554,49 @@
             document.getElementById('title').innerHTML = `${val.title}`
             document.getElementById('ntitle').innerHTML = `${val.title}`
             document.getElementById('des').innerHTML = `${val.description}`
+            const reviews = tmp.reviews;
+            for (let i = 0; i < reviews.length; i++) {
+                let read = await fetch(`/product?uid=${reviews[i].id}`)
+                read = await read.json();
+                li = read.name.split(' ');
+                let Name = '', star = '';
+                for (let j = 0; j < li.length; j++) Name += (capital(li[j]) + ' ');
+                for (let j = 0; j < 5; j++) {
+                    if (j >= reviews[i].stars) star += '<span class="fa fa-star star-inactive"></span>'
+                    else star += '<span class="fa fa-star star-active"></span>'
+                }
+                let dli = reviews[i].date.slice(0, 10).split("-");
+                let date = '';
+                for (let j = dli.length - 1; j >= 0; j--) date += (dli[j] + '-');
+                date = date.slice(0, date.length - 1);
+                document.getElementById('reviews').innerHTML += `<div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center mb-5">
+                            <div class="card">
+                                <div class="row d-flex">
+                                    <div class=""> <img class="profile-pic" src="${read.image}"
+                                            style="margin-right: 0;">
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <h3 class="mt-2 mb-0">${Name}</h3>
+                                        <div>
+                                            ${star}
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <p class="text-muted">${date}</p>
+                                    </div>
+                                </div>
+                                <div class="row text-left">
+
+                                    <p class="content" style="padding-left: 0;padding-right: 0;">${reviews[i].review}</p>
+                                </div>
+
+                                <div class="row text-left mt-4">
+
+
+                                </div>
+                            </div>
+                        </div>`
+            }
         }
         funcp()
         const funcr = async () => {
@@ -654,6 +702,32 @@
                 console.log("bug");
             }
         }
+        /*document.getElementById("myform").addEventListener("submit", async function (event) {
+            event.preventDefault()
+            let obj = {
+                stars: 0,
+                id: '{{id}}',
+                review: '',
+                pid:'{{id}}'
+            }
+            const star = document.getElementsByName('star')
+            for (i = 0; i < star.length; i++) {
+                if (star[i].checked)
+                    obj['star'] = star[i].value;
+            }
+            obj['review'] = document.getElementsByName('review')[0].value;
+            const options = {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(obj)
+            };
+            let tmp = await fetch('https://martdb.onrender.com/review', options)
+            tmp = await tmp.json()
+            console.log(tmp);
+            location.reload();
+        });*/
     </script>
 </body>
 
