@@ -224,7 +224,7 @@
                             {{!-- <li>Subtotal <span>₹ 169.50</span></li> --}}
                             <li>Total <span>₹ <span id="total">0</span></span></li>
                         </ul>
-                        <a href="/pay" class="primary-btn">Proceed to checkout</a>
+                        <button class="primary-btn" onclick="goc()">Proceed to checkout</button>
                     </div>
                 </div>
             </div>
@@ -332,6 +332,10 @@
         }
         const go = (c, n) => {
             open(`/product?cat=${c}&id=${n}`, '_self');
+        }
+        const goc = () => {
+            if (total.innerHTML === '0') return;
+            open(`/pay`, '_self');
         }
     </script>
 </body>

@@ -88,8 +88,8 @@
                     <div class="breadcrumb__text">
                         <h4>Check Out</h4>
                         <div class="breadcrumb__links">
-                            <a href="./index.html">Home</a>
-                            <a href="./shop.html">Shop</a>
+                            <a href="/">Home</a>
+                            <a href="/shop">Shop</a>
                             <span>Check Out</span>
                         </div>
                     </div>
@@ -187,42 +187,7 @@
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="checkout__order">
-                                <h4 class="order__title">Your order</h4>
-                                <div class="checkout__order__products">Product <span>Total</span></div>
-                                <ul class="checkout__total__products" id="cart">
-                                    <li>01. Vanilla salted caramel <span>$ 300.0</span></li>
-                                    <li>02. German chocolate <span>$ 170.0</span></li>
-                                    <li>03. Sweet autumn <span>$ 170.0</span></li>
-                                    <li>04. Cluten free mini dozen <span>$ 110.0</span></li>
-                                </ul>
-                                <ul class="checkout__total__all">
-                                    {{!-- <li>Subtotal <span>$750.99</span></li> --}}
-                                    <li>Total <span id="price">$750.99</span></li>
-                                </ul>
-                                {{!-- <div class="checkout__input__checkbox">
-                                    <label for="acc-or">
-                                        Create an account?
-                                        <input type="checkbox" id="acc-or">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div> --}}
-                                {{!-- <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor
-                                    incididunt
-                                    ut labore et dolore magna aliqua.</p>
-                                <div class="checkout__input__checkbox">
-                                    <label for="payment">
-                                        Check Payment
-                                        <input type="checkbox" id="payment">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="checkout__input__checkbox">
-                                    <label for="paypal">
-                                        Paypal
-                                        <input type="checkbox" id="paypal">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div> --}}
+
                                 <button class="site-btn bg-black text-white"><a href="/pay?order=1">PLACE
                                         ORDER</a></button>
                                 <button type="submit" class="site-btn bg-black text-white" style="display:none">PLACE
@@ -265,28 +230,6 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/search.js"></script>
-    <script>
-        const body = document.getElementById('cart');
-        let sum = 0;
-        const setItem = async (val) => {
-            let tmp = await fetch(`https://martdb.onrender.com/products?id=${val}`)
-            tmp = await tmp.json()
-            console.log(tmp)
-            sum += tmp.price;
-            console.log(sum)
-            body.innerHTML += `<li>${tmp.title}<span>₹ ${tmp.price}</span></li>`;
-            document.getElementById('price').innerText = `₹${sum}`;
-        }
-        const addItems = async () => {
-            let tmp = await fetch('/cart?id={{id}}')
-            tmp = await tmp.json()
-            console.log(tmp)
-            const li = tmp.cart
-            body.innerHTML = '';
-            for (let i = 0; i < li.length; i++) setItem(li[i])
-        }
-        addItems()
-    </script>
 </body>
 
 </html>

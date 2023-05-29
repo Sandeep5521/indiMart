@@ -164,9 +164,16 @@ app.get('/pay', auth, async (req, res) => {
     const tmp = await Data.findOne({ _id: id });
     let user = tmp.name.split(" ", 1);
     user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
-    if (req.query.order) res.render("bad.hbs", {
-        message: 'order is placed Successfully'
-    })
+    if (req.query.order) {
+        const li = tmp.cart;
+        await Data.updateOne({ _id: id }, {
+            $set: {
+                cart: [],
+                orders: tmp.cart
+            }
+        })
+        res.render("confirm.hbs",)
+    }
     else res.render("checkout.hbs", {
         iname: 'Hi, ' + user,
         id: id
@@ -184,6 +191,23 @@ app.get('/wishlist', auth, async (req, res) => {
         let user = tmp.name.split(" ", 1);
         user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
         res.render("wishlist.hbs", {
+            iname: 'Hi, ' + user,
+            id: id
+        })
+    }
+})
+
+app.get('/orders', auth, async (req, res) => {
+    const id = req.id
+    const tmp = await Data.findOne({ _id: id }).select({
+        name: 1,
+        orders: 1
+    });
+    if (req.query.id) res.send(tmp)
+    else {
+        let user = tmp.name.split(" ", 1);
+        user = String(user).charAt(0).toUpperCase() + String(user).slice(1);
+        res.render("orders.hbs", {
             iname: 'Hi, ' + user,
             id: id
         })
